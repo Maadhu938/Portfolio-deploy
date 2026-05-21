@@ -10,20 +10,20 @@ export default function ContactSection() {
           
           {/* Main CTA */}
           <div className="md:col-span-3 bento-card bg-primary text-primary-foreground p-12 md:p-24 flex flex-col justify-between min-h-[500px] group overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.2),transparent)] pointer-events-none" />
             <div className="space-y-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-60">Transmission / Contact</span>
+              <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80">Transmission / Contact</span>
               <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] uppercase">
                 READY <br />
                 TO <br />
-                <span className="font-serif italic lowercase tracking-tight opacity-40">execute.</span>
+                <span className="opacity-60 font-serif italic lowercase tracking-tight">execute.</span>
               </h2>
             </div>
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-12">
                <a 
                  href="mailto:maadhuavati7@gmail.com" 
-                 className="text-2xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-white/20"
+                 className="text-2xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-primary-foreground/30"
                >
                  maadhuavati7@gmail.com
                </a>

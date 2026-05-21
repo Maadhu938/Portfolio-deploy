@@ -29,14 +29,14 @@ export default function AboutSection() {
 
           {/* Principle 1 */}
           <div className="md:col-span-2 bento-card bg-primary text-primary-foreground p-8 flex flex-col justify-between group overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
+            <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-30 transition-opacity">
               <span className="text-9xl font-bold font-serif italic leading-none">01</span>
             </div>
             <div className="relative z-10 space-y-4">
-               <span className="text-[10px] font-mono uppercase tracking-widest opacity-60">Principle One</span>
+               <span className="text-[10px] font-mono uppercase tracking-widest opacity-80">Principle One</span>
                <h3 className="text-3xl font-bold tracking-tight">{principles[0].title}</h3>
             </div>
-            <p className="relative z-10 text-xl text-primary-foreground/80 leading-snug tracking-tight max-w-xs">
+            <p className="relative z-10 text-xl text-primary-foreground leading-snug tracking-tight max-w-xs">
               {principles[0].desc}
             </p>
           </div>

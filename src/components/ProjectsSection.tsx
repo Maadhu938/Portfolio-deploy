@@ -24,12 +24,12 @@ export default function ProjectsSection() {
             return (
               <div 
                 key={project.title} 
-                className={`bento-card bg-muted/30 group border-border/50 flex flex-col justify-between ${isWide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
+                className={`bento-card bg-card group border-border flex flex-col justify-between ${isWide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
               >
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
-                    <span className="text-[10px] font-mono text-muted-foreground opacity-50 uppercase tracking-widest leading-none">UNIT / 00{i+1}</span>
-                    <h4 className="text-2xl font-bold tracking-tight uppercase leading-none">{project.title}</h4>
+                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest leading-none">UNIT / 00{i+1}</span>
+                    <h4 className="text-2xl font-bold tracking-tight uppercase leading-none text-foreground">{project.title}</h4>
                   </div>
                   <div className="flex gap-2">
                     <a href={project.githubUrl} target="_blank" className="p-2 rounded-full bg-background border border-border hover:bg-primary hover:text-primary-foreground transition-all">
