@@ -28,26 +28,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         >
             {/* Card background with gradient header */}
             <div className="absolute inset-0">
-                <div className="h-full bg-gradient-to-br from-[var(--color-bg-tertiary)] to-[var(--color-accent-muted)]/30" />
+                <div className="h-full bg-[var(--bg-secondary)] border border-[var(--border-subtle)] rounded-xl" />
             </div>
 
-            {/* Large initial */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl sm:text-7xl font-bold text-[var(--color-accent)] opacity-10 group-hover:opacity-20 group-focus-within:opacity-20 transition-opacity select-none">
-                {project.title.charAt(0)}
-            </div>
-
-            {/* Dark overlay - always slightly visible on touch devices */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-70 sm:opacity-60 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-300" />
-
-            {/* Featured badge */}
-            {project.featured && (
-                <div className="absolute top-2 sm:top-3 right-2 sm:right-3 px-2 py-1 bg-[var(--color-accent)] rounded text-xs font-medium text-white z-10">
-                    Featured
-                </div>
-            )}
+            {/* Subtle glow on hover */}
+            <div className="absolute inset-0 bg-[var(--color-accent)]/5 opacity-0 group-hover:opacity-100 transition-opacity" />
 
             {/* Content */}
-            <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end">
+            <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-end bg-gradient-to-t from-[var(--bg-primary)] via-transparent to-transparent">
                 {/* Title - always visible */}
                 <h3 className="text-base sm:text-lg font-semibold text-white group-hover:text-[var(--color-accent-hover)] group-focus-within:text-[var(--color-accent-hover)] transition-colors">
                     {project.title}

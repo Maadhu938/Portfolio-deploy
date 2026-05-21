@@ -8,15 +8,15 @@ export default function Hero() {
     return (
         <section className="relative min-h-[100svh] w-full overflow-hidden">
             {/* Background - cinematic gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-tertiary)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,var(--color-accent),transparent_40%)] opacity-10" />
+            <div className="absolute inset-0 bg-[var(--bg-primary)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,var(--color-accent),transparent_50%)] opacity-[0.03] dark:opacity-[0.05]" />
 
             {/* Subtle pattern overlay */}
             <div
-                className="absolute inset-0 opacity-[0.05] dark:opacity-[0.02]"
+                className="absolute inset-0 opacity-[0.03] dark:opacity-[0.01]"
                 style={{
-                    backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)`,
-                    backgroundSize: '40px 40px'
+                    backgroundImage: `linear-gradient(var(--border-subtle) 1px, transparent 1px), linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px)`,
+                    backgroundSize: '80px 80px'
                 }}
             />
 
