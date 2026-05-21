@@ -1,5 +1,26 @@
 export const projects = [
     {
+        title: "MinnaLearn Japanese N5 App",
+        description:
+            "A comprehensive Flutter-based Japanese learning app designed for JLPT N5 learners. Features interactive flashcards, quizzes, and progress tracking.",
+        techStack: ["Flutter", "Dart", "Firebase", "Algorithms"],
+        githubUrl: "https://github.com/Maadhu938/MinnaLearn-FlutterApp",
+        liveUrl: "",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.madhu.minnalearn",
+        status: "Published",
+        featured: true
+    },
+    {
+        title: "UniMateX",
+        description:
+            "An AI-powered academic assistant platform designed to streamline student life and enhance productivity.",
+        techStack: ["Next.js", "TypeScript", "Tailwind CSS", "AI", "PostgreSQL"],
+        githubUrl: "https://github.com/Maadhu938/UniMateX",
+        liveUrl: "",
+        status: "In Development",
+        featured: true
+    },
+    {
         title: "MyNotebook",
         description:
             "Full-stack notebook app with AI chat, notes, document uploads, and per-user data isolation.",
@@ -8,6 +29,15 @@ export const projects = [
         liveUrl: "",
         status: "Active Development",
         featured: true
+    },
+    {
+        title: "NeuroWeave",
+        description:
+            "A collaborative workspace for developers and researchers to share and discuss neural network architectures.",
+        techStack: ["TypeScript", "Next.js", "PostgreSQL", "React"],
+        githubUrl: "https://github.com/Maadhu938/NeuroWeave",
+        liveUrl: "",
+        featured: false
     },
     {
         title: "JLPTN5-WebApp",

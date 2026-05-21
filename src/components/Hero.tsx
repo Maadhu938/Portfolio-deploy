@@ -8,14 +8,14 @@ export default function Hero() {
     return (
         <section className="relative min-h-[100svh] w-full overflow-hidden">
             {/* Background - cinematic gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e17] via-[#0d1322] to-black" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_40%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-tertiary)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,var(--color-accent),transparent_40%)] opacity-10" />
 
             {/* Subtle pattern overlay */}
             <div
-                className="absolute inset-0 opacity-[0.02]"
+                className="absolute inset-0 opacity-[0.05] dark:opacity-[0.02]"
                 style={{
-                    backgroundImage: `radial-gradient(circle at 1px 1px, white 1px, transparent 1px)`,
+                    backgroundImage: `radial-gradient(circle at 1px 1px, currentColor 1px, transparent 1px)`,
                     backgroundSize: '40px 40px'
                 }}
             />
@@ -69,7 +69,7 @@ export default function Hero() {
 
             {/* Scroll hint - hidden on very small screens */}
             <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 animate-bounce opacity-50 hidden sm:block">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-[var(--color-text-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
             </div>

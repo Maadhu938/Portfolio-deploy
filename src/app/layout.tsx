@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -103,13 +104,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+    <html lang="en" className={`${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <JsonLd />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

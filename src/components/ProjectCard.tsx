@@ -6,6 +6,7 @@ interface Project {
     techStack: string[];
     githubUrl: string;
     liveUrl: string;
+    playStoreUrl?: string;
     status?: string;
     featured?: boolean;
 }
@@ -89,6 +90,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                             className="text-xs px-2.5 sm:px-3 py-1.5 bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] active:bg-[var(--color-accent)] text-white rounded transition-colors touch-target"
                         >
                             Live Demo
+                        </a>
+                    )}
+                    {project.playStoreUrl && (
+                        <a
+                            href={project.playStoreUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()}
+                            className="text-xs px-2.5 sm:px-3 py-1.5 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white rounded transition-colors touch-target flex items-center gap-1.5"
+                        >
+                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M3.609 1.814L13.792 12 3.61 22.186c-.184.18-.459.215-.68.083l-.01-.007a.64.64 0 01-.1-.1v-20.32c0-.353.287-.64.64-.64.124 0 .245.036.349.102l.01.006c.222.132.497.098.68-.083zM14.502 12.71l3.056-3.056L22.69 11.23c.47.235.66.804.425 1.274a.925.925 0 01-.425.426l-5.132 2.576-3.056-3.057zm-1.42-1.42L3.81 2.053l10.4 5.2c.473.236.663.805.427 1.278-.073.146-.183.273-.32.368l-1.235.79zm0 2.84l1.235.79c.473.236.663.805.427 1.278-.073.146-.183.273-.32.368l-10.4 5.2 9.258-9.258z" />
+                            </svg>
+                            <span className="hidden sm:inline">Play Store</span>
                         </a>
                     )}
                 </div>

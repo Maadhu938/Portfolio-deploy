@@ -9,6 +9,7 @@ interface Project {
     techStack: string[];
     githubUrl: string;
     liveUrl: string;
+    playStoreUrl?: string;
     status?: string;
     featured?: boolean;
 }
