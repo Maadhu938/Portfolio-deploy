@@ -25,7 +25,17 @@ export default function SkillsSection() {
               <div className={`grid gap-x-8 gap-y-4 mt-12 ${i === 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                 {skills.filter(s => s.category === cat).map(skill => (
                   <div key={skill.name} className="flex items-center justify-between border-b border-border/50 pb-2 group cursor-default">
-                    <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors">{skill.name}</span>
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}-original.svg`}
+                        alt=""
+                        className="w-5 h-5 opacity-40 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).style.display = 'none';
+                        }}
+                      />
+                      <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors">{skill.name}</span>
+                    </div>
                     <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                   </div>
                 ))}

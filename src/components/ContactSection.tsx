@@ -35,21 +35,36 @@ export default function ContactSection() {
 
           {/* Social Links Bento */}
           <div className="md:col-span-1 grid grid-cols-1 gap-6">
-            <a href="https://linkedin.com/in/maadhu-avati-525435279" target="_blank" className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group">
+            <a 
+              href="https://linkedin.com/in/maadhu-avati-525435279" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group"
+            >
                <Linkedin className="text-muted-foreground group-hover:text-primary transition-colors" size={24} />
                <div className="space-y-1">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Professional</p>
                   <p className="text-xl font-bold tracking-tight">LinkedIn</p>
                </div>
             </a>
-            <a href="https://github.com/Maadhu938" target="_blank" className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group">
+            <a 
+              href="https://github.com/Maadhu938" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group"
+            >
                <Github className="text-muted-foreground group-hover:text-primary transition-colors" size={24} />
                <div className="space-y-1">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Source</p>
                   <p className="text-xl font-bold tracking-tight">GitHub</p>
                </div>
             </a>
-            <a href="https://instagram.com/maadhu_839" target="_blank" className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group">
+            <a 
+              href="https://instagram.com/maadhu_839" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bento-card bg-card border-border p-8 flex flex-col justify-between hover:bg-muted transition-colors group"
+            >
                <Instagram className="text-muted-foreground group-hover:text-primary transition-colors" size={24} />
                <div className="space-y-1">
                   <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Social</p>
