@@ -50,6 +50,7 @@
   --border: 240 5.9% 90%;
   --input: 240 5.9% 90%;
   --ring: 240 5.9% 10%;
+  --icon-filter: none;
 }
 
 .dark {
@@ -72,6 +73,7 @@
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
+  --icon-filter: brightness(0) invert(1);
 }
 
 @layer base {
@@ -92,7 +94,8 @@
 }
 
 .bento-card {
-  @apply relative overflow-hidden rounded-3xl border bg-card p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 active:scale-[0.98];
+  @apply relative overflow-hidden rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 active:scale-[0.98];
+  background-color: hsl(var(--card));
 }
 
 .glass {

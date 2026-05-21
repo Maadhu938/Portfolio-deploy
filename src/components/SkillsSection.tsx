@@ -23,43 +23,52 @@ export default function SkillsSection() {
               </div>
 
               <div className={`grid gap-x-8 gap-y-4 mt-12 ${i === 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                {skills.filter(s => s.category === cat).map(skill => (
-                  <div key={skill.name} className="flex items-center justify-between border-b border-border/50 pb-2 group cursor-default">
-                    <div className="flex items-center gap-3">
-                      <img 
-                        src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}-original.svg`}
-                        alt=""
-                        className="w-5 h-5 opacity-40 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = 'none';
-                        }}
-                      />
-                      <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors">{skill.name}</span>
+                {skills.filter(s => s.category === cat).map(skill => {
+                  const iconMapping: Record<string, string> = {
+                    "React": "react/react-original.svg",
+                    "JavaScript": "javascript/javascript-original.svg",
+                    "TypeScript": "typescript/typescript-original.svg",
+                    "Tailwind CSS": "tailwindcss/tailwindcss-original.svg",
+                    "Python": "python/python-original.svg",
+                    "Flask": "flask/flask-original.svg",
+                    "PostgreSQL": "postgresql/postgresql-original.svg",
+                    "Supabase": "supabase/supabase-original.svg",
+                    "Next.js": "nextjs/nextjs-original.svg",
+                    "Node.js": "nodejs/nodejs-original.svg",
+                    "Firebase": "firebase/firebase-plain.svg",
+                    "Flutter": "flutter/flutter-original.svg",
+                    "Dart": "dart/dart-original.svg",
+                    "API Integration": "devicon/icons/google/google-original.svg",
+                    "Algorithms": "devicon/icons/c/c-original.svg"
+                  };
+                  
+                  const iconPath = iconMapping[skill.name] || `${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}-original.svg`;
+
+                  return (
+                    <div key={skill.name} className="flex items-center justify-between border-b border-border/50 pb-2 group cursor-default">
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconPath}`}
+                          alt=""
+                          className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity grayscale-0 dark:brightness-200 dark:contrast-100"
+                          style={{ filter: 'var(--icon-filter)' }}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).style.visibility = 'hidden';
+                          }}
+                        />
+                        <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors">{skill.name}</span>
+                      </div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     </div>
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="mt-8 pt-8 border-t border-border/50">
-                 <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Status / Verified</p>
+                 <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Expertise / Verified</p>
               </div>
             </div>
           ))}
-
-          {/* Additional Tech Meta Card */}
-          <div className="lg:col-span-4 bento-card bg-primary text-primary-foreground p-8 py-10 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden">
-             <div className="absolute inset-0 opacity-10 pointer-events-none select-none overflow-hidden whitespace-nowrap text-[120px] font-bold font-mono tracking-tighter leading-none">
-                REACT NEXTJS TYPESCRIPT TAILWIND NODEJS PYTHON AWS DOCKER GRAPHQL
-             </div>
-             <div className="relative z-10 space-y-2 text-center md:text-left">
-                <h4 className="text-2xl font-bold tracking-tighter uppercase">Continuous Integration</h4>
-                <p className="text-primary-foreground/60 text-sm max-w-md">I am constantly evolving my stack, exploring LLM orchestration and high-concurrency systems.</p>
-             </div>
-             <div className="relative z-10 flex gap-4">
-                <div className="px-6 py-3 rounded-2xl bg-primary-foreground text-primary font-bold text-xs uppercase tracking-widest">Always Learning</div>
-             </div>
-          </div>
         </div>
       </div>
     </section>

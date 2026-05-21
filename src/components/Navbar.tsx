@@ -55,7 +55,7 @@ export default function Navbar() {
 
           <Link 
             href="#contact"
-            className="hidden sm:flex bento-card bg-primary !p-3 !px-6 !rounded-2xl text-primary-foreground font-bold text-sm tracking-widest uppercase items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/20"
+            className="hidden sm:flex bento-card !bg-primary !p-3 !px-6 !rounded-2xl !text-primary-foreground font-bold text-sm tracking-widest uppercase items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/20"
           >
             Connect
           </Link>

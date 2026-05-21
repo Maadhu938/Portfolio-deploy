@@ -13,25 +13,25 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
           {/* Main Hero Card */}
-          <div className="md:col-span-3 bento-card flex flex-col justify-between min-h-[450px] bg-primary text-primary-foreground group">
+          <div className="md:col-span-3 bento-card flex flex-col justify-between min-h-[450px] !bg-primary !text-primary-foreground group">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 text-[10px] font-mono uppercase tracking-widest border border-primary-foreground/10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 text-[10px] font-mono uppercase tracking-widest border border-primary-foreground/10 !text-primary-foreground/80">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
                 Available for hire
               </div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9]">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] !text-primary-foreground">
                 MAADHU <br />
-                <span className="text-primary-foreground/60 italic font-serif">AVATI.</span>
+                <span className="opacity-40 italic font-serif">AVATI.</span>
               </h1>
             </div>
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-12">
-              <p className="text-xl md:text-2xl text-primary-foreground/80 max-w-lg leading-tight">
-                Full-stack engineer building high-performance <span className="text-primary-foreground font-medium underline decoration-primary-foreground/30 underline-offset-4">AI systems</span> and refined digital interfaces.
+              <p className="text-xl md:text-2xl opacity-80 max-w-lg leading-tight !text-primary-foreground">
+                Full-stack engineer building high-performance <span className="font-medium underline decoration-primary-foreground/30 underline-offset-4">AI systems</span> and refined digital interfaces.
               </p>
               <Link 
                 href="#projects" 
-                className="w-16 h-16 rounded-full bg-primary-foreground text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl"
+                className="w-16 h-16 rounded-full bg-primary-foreground !text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl"
               >
                 <ArrowUpRight size={28} />
               </Link>
