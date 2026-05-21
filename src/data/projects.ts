@@ -14,8 +14,8 @@ export const projects = [
         title: "UniMateX",
         description:
             "An AI-powered academic assistant platform designed to streamline student life and enhance productivity.",
-        techStack: ["Next.js", "TypeScript", "Tailwind CSS", "AI", "PostgreSQL"],
-        githubUrl: "https://github.com/Maadhu938/UniMateX",
+        techStack: ["Flutter", "Dart", "Firebase", "AI"],
+        githubUrl: "https://github.com/Maadhu938/UniMateX-app",
         liveUrl: "",
         status: "In Development",
         featured: true
@@ -25,7 +25,7 @@ export const projects = [
         description:
             "Full-stack notebook app with AI chat, notes, document uploads, and per-user data isolation.",
         techStack: ["React", "Capacitor", "Flask", "PostgreSQL", "Supabase", "RAG"],
-        githubUrl: "",
+        githubUrl: "https://github.com/Maadhu938/mynotebook-backend",
         liveUrl: "",
         status: "Active Development",
         featured: true
