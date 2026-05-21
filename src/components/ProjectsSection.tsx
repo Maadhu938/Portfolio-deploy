@@ -1,81 +1,73 @@
+"use client";
 import { projects } from "@/data/projects";
-import { MoveUpRight } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 
 export default function ProjectsSection() {
-  const featured = projects.filter(p => p.featured);
-
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-screen-2xl mx-auto">
-        <div className="flex flex-col gap-32">
-          {/* Section Header */}
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 pb-12 border-b border-border">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight">WORKS</h2>
-            <div className="text-sm font-mono text-muted uppercase tracking-widest max-w-[200px]">
-              A curated collection of digital products.
-            </div>
+    <section id="projects" className="py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="space-y-4">
+            <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground p-1 px-3 border border-border inline-block rounded-full">
+              Works / 001
+            </h2>
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
+              Selected <span className="text-muted-foreground">Projects</span>
+            </h3>
           </div>
+          <p className="text-muted-foreground max-w-sm text-lg leading-relaxed">
+            A collection of digital products focused on utility, performance, and architecture.
+          </p>
+        </div>
 
-          {/* Project List - Editorial Style */}
-          <div className="space-y-48">
-            {featured.map((project, i) => (
-              <div key={project.title} className="group grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
-                {/* Number & Side Info */}
-                <div className="lg:col-span-2 hidden lg:block">
-                  <div className="sticky top-32 space-y-8">
-                    <div className="text-3xl font-serif italic opacity-20">0{i + 1}</div>
-                    <div className="flex flex-col gap-2">
-                       <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted">Tech Stack</span>
-                       {project.techStack.map(ts => (
-                         <span key={ts} className="text-[10px] font-mono uppercase tracking-widest">{ts}</span>
-                       ))}
-                    </div>
-                  </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          {projects.filter(p => p.featured).map((project) => (
+            <div 
+              key={project.title} 
+              className="group relative flex flex-col space-y-6 p-1 rounded-3xl bg-muted/50 border border-border transition-all hover:bg-muted/80"
+            >
+              {/* Image / Card */}
+              <div className="aspect-[16/10] bg-background rounded-2xl overflow-hidden relative border border-border">
+                <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-transparent flex items-center justify-center p-12">
+                   <div className="text-9xl font-bold tracking-tighter opacity-[0.03] group-hover:scale-110 transition-transform duration-1000">
+                     {project.title.charAt(0)}
+                   </div>
                 </div>
-
-                {/* Main Content */}
-                <div className="lg:col-span-10">
-                  <div className="space-y-12">
-                     <div className="aspect-[16/10] bg-[#f9f9f9] dark:bg-[#0a0a0a] border border-border overflow-hidden relative group-hover:border-fg transition-colors duration-500">
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <span className="text-8xl font-bold tracking-tighter opacity-5 group-hover:scale-110 transition-transform duration-1000">
-                                {project.title.charAt(0)}
-                            </span>
-                        </div>
-                        <div className="absolute inset-0 bg-fg opacity-0 group-hover:opacity-[0.02] transition-opacity duration-700" />
-                     </div>
-
-                     <div className="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-24">
-                        <div className="flex-1 space-y-6">
-                            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">{project.title}</h3>
-                            <p className="text-xl text-muted leading-relaxed max-w-2xl">{project.description}</p>
-                        </div>
-                        
-                        <div className="flex shrink-0 pt-2 font-mono text-sm">
-                            <a 
-                              href={project.playStoreUrl || project.githubUrl} 
-                              target="_blank"
-                              className="group/link flex items-center gap-2 hover:opacity-50 transition-opacity"
-                            >
-                                {project.playStoreUrl ? "PLAY STORE" : "SOURCE CODE"}
-                                <div className="p-2 border border-border rounded-full group-hover/link:bg-fg group-hover/link:text-bg transition-colors">
-                                  <MoveUpRight size={14} />
-                                </div>
-                            </a>
-                        </div>
-                     </div>
-                  </div>
+                
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all duration-500 flex items-center justify-center gap-4">
+                  {project.playStoreUrl && (
+                    <a href={project.playStoreUrl} target="_blank" className="p-4 bg-foreground text-background rounded-full hover:scale-110 transition-transform shadow-xl">
+                      <ExternalLink size={24} />
+                    </a>
+                  )}
+                  <a href={project.githubUrl} target="_blank" className="p-4 bg-background text-foreground rounded-full hover:scale-110 transition-transform shadow-xl border border-border">
+                    <Github size={24} />
+                  </a>
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Simple Button for Archive */}
-          <div className="flex justify-center pt-24">
-             <div className="text-sm font-mono text-muted uppercase tracking-widest text-center">
-                Check [ <a href="https://github.com/Maadhu938" className="text-fg underline underline-offset-4">GITHUB</a> ] for more repositories.
-             </div>
-          </div>
+              {/* Text Info */}
+              <div className="px-6 pb-8 space-y-4">
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map(ts => (
+                    <span key={ts} className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-border bg-background">
+                      {ts}
+                    </span>
+                  ))}
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed line-clamp-2">
+                    {project.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

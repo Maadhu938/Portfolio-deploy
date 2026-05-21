@@ -1,17 +1,32 @@
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="py-12 px-6 md:px-12 lg:px-24 bg-bg border-t border-border">
-      <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-        <div>
-           Handcrafted by Maadhu Avati / {currentYear}
-        </div>
-        
-        <div className="flex gap-12 text-fg">
-          <a href="https://github.com/Maadhu938" target="_blank" className="hover:opacity-50 transition-opacity">GitHub</a>
-          <a href="https://www.linkedin.com/in/maadhu-avati-525435279" target="_blank" className="hover:opacity-50 transition-opacity">LinkedIn</a>
-          <button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="hover:opacity-50 transition-opacity">↑ Top</button>
+    <footer className="py-20 bg-background border-t border-border mt-32">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-12">
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold tracking-tighter uppercase">Maadhu Avati.</h2>
+            <p className="text-muted-foreground max-w-xs leading-relaxed">
+              Designed and developed with meticulous attention to detail. Built on the edge.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 gap-12 md:gap-24">
+            <div className="space-y-4">
+               <h3 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Social</h3>
+               <ul className="space-y-2 text-sm">
+                  <li><a href="#" className="hover:text-muted-foreground transition-colors">Twitter</a></li>
+                  <li><a href="https://github.com/Maadhu938" className="hover:text-muted-foreground transition-colors">GitHub</a></li>
+                  <li><a href="https://linkedin.com/in/maadhu-avati-525435279" className="hover:text-muted-foreground transition-colors">LinkedIn</a></li>
+               </ul>
+            </div>
+            <div className="space-y-4">
+               <h3 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Legal</h3>
+               <ul className="space-y-2 text-sm">
+                  <li><span className="opacity-50">© 2026</span></li>
+                  <li><span className="opacity-50">India</span></li>
+               </ul>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

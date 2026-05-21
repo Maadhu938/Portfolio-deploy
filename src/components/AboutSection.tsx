@@ -1,37 +1,43 @@
 export default function AboutSection() {
-  const capabilities = [
-    { title: "Architectural Logic", desc: "Modular thinking applied to digital systems. Scaling from zero to distributed." },
-    { title: "Interface Precision", desc: "Hard-edged layouts centered around utility and cinematic motion." },
-    { title: "Applied Intelligence", desc: "Integrating LLMs into production flows with RAG and custom reasoning." },
-    { title: "Human Centricity", desc: "Designing for the user's intent rather than the developer's convenience." }
+  const values = [
+    { title: "Architecture", desc: "Thinking in systems before writing a single line of code." },
+    { title: "Performance", desc: "Optimizing for the edge—speed is a feature, not an afterthought." },
+    { title: "Precision", desc: "Pixel perfection and structural integrity in every component." }
   ];
 
   return (
-    <section id="about" className="py-24 px-6 md:px-12 lg:px-24 bg-bg">
-      <div className="max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-border pt-12">
-          {/* Label */}
-          <div className="lg:col-span-3">
-             <div className="flex items-center gap-3">
-                <div className="w-1.5 h-1.5 rounded-full bg-fg" />
-                <span className="text-[10px] font-mono uppercase tracking-[0.3em] font-semibold">The Architect</span>
-             </div>
+    <section id="about" className="py-32 bg-foreground text-background">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+          <div className="space-y-12">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none uppercase">
+              Merging <br /> 
+              Logic with <br />
+              <span className="text-background/40">Imagination</span>
+            </h2>
+            
+            <div className="space-y-6 text-xl text-background/80 leading-relaxed max-w-xl">
+              <p>
+                I'm a Full-Stack Engineer based in India, specializing in building products that solve complex problems with elegant solutions.
+              </p>
+              <p>
+                My approach is rooted in structural integrity. Whether it's a mobile app for students or an AI-driven knowledge base, I focus on building foundations that scale.
+              </p>
+            </div>
           </div>
 
-          {/* Core Text */}
-          <div className="lg:col-span-9 space-y-12">
-             <h3 className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold tracking-tight leading-[1.05] max-w-4xl">
-               I solve problems using <span className="font-serif italic text-muted">logic as craft</span>. My work exists at the intersection of technical performance and high-fidelity interaction.
-             </h3>
-             
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-12 border-t border-border">
-                {capabilities.map((cap) => (
-                  <div key={cap.title} className="space-y-4">
-                    <h4 className="text-sm font-mono uppercase tracking-widest">{cap.title}</h4>
-                    <p className="text-muted text-lg leading-relaxed">{cap.desc}</p>
-                  </div>
-                ))}
-             </div>
+          <div className="grid grid-cols-1 gap-12 pt-8">
+            {values.map((v, i) => (
+              <div key={v.title} className="group border-t border-background/10 pt-8">
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-xs font-mono opacity-40 uppercase tracking-widest">0{i+1}</span>
+                  <h3 className="text-3xl font-bold uppercase tracking-tight">{v.title}</h3>
+                </div>
+                <p className="text-lg text-background/60 leading-relaxed max-w-md ml-auto text-right">
+                  {v.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
