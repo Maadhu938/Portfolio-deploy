@@ -27,28 +27,28 @@
 
 :root {
   --bg-primary: #ffffff;
-  --bg-secondary: #f9fafb;
-  --bg-tertiary: #f3f4f6;
+  --bg-secondary: #fbfbfb;
+  --bg-tertiary: #f5f5f5;
   --bg-card: #ffffff;
 
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --text-muted: #6b7280;
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --text-muted: #888888;
 
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --accent-muted: #dbeafe;
+  --accent: #000000;
+  --accent-hover: #333333;
+  --accent-muted: #eeeeee;
 
-  --border-subtle: #e5e7eb;
+  --border-subtle: #eaeaea;
 }
 
 .dark {
-  --bg-primary: #050505;
+  --bg-primary: #000000;
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #111111;
-  --bg-card: #0c0c0c;
+  --bg-card: #000000;
 
-  --text-primary: #ededed;
+  --text-primary: #ffffff;
   --text-secondary: #a1a1a1;
   --text-muted: #717171;
 
@@ -67,15 +67,47 @@ html {
 }
 
 body {
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   font-family: var(--font-sans);
   min-height: 100vh;
   min-height: 100dvh;
-  /* Safe area insets for notched devices */
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.premium-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-card:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+
+.dark .premium-card:hover {
+  box-shadow: 0 10px 30px -10px rgba(255,255,255,0.05);
+}
+
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+}
+
 
 /* Fluid Typography */
 .text-fluid-xs {

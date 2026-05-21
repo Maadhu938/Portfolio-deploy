@@ -6,7 +6,7 @@ export const projects = [
         techStack: ["Flutter", "Dart", "Firebase", "Algorithms"],
         githubUrl: "https://github.com/Maadhu938/MinnaLearn-FlutterApp",
         liveUrl: "",
-        playStoreUrl: "https://play.google.com/store/apps/details?id=com.madhu.minnalearn",
+        playStoreUrl: "https://play.google.com/store/apps/details?id=com.maadhu.minnalearn",
         status: "Published",
         featured: true
     },

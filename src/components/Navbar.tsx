@@ -41,33 +41,35 @@ export default function Navbar() {
     return (
         <>
             <nav
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-[var(--color-bg-primary)]/95 backdrop-blur-sm border-b border-[var(--color-border-subtle)]"
-                    : "bg-transparent"
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+                    ? "bg-[var(--bg-primary)]/80 backdrop-blur-md border-b border-[var(--border-subtle)] py-2"
+                    : "bg-transparent py-4"
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16">
+                <div className="max-w-5xl mx-auto px-6">
+                    <div className="flex items-center justify-between h-12">
                         {/* Logo */}
                         <Link
                             href="/"
-                            className="text-lg sm:text-xl font-bold text-[var(--color-text-primary)] hover:text-[var(--color-accent)] transition-colors"
+                            className="text-base font-bold tracking-tighter text-[var(--text-primary)] hover:opacity-70 transition-opacity"
                         >
-                            Maadhu Avati
+                            MA
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
+                        <div className="hidden md:flex items-center space-x-1">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.name}
                                     href={link.href}
-                                    className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] transition-colors text-sm font-medium py-2"
+                                    className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] px-4 py-2 rounded-full transition-all text-sm font-medium"
                                 >
                                     {link.name}
                                 </Link>
                             ))}
-                            <ThemeToggle />
+                            <div className="pl-2 ml-2 border-l border-[var(--border-subtle)]">
+                                <ThemeToggle />
+                            </div>
                         </div>
 
                         {/* Mobile Menu Button Wrapper */}
