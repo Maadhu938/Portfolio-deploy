@@ -38,8 +38,11 @@ export default function SkillsSection() {
                     "Firebase": "firebase/firebase-plain.svg",
                     "Flutter": "flutter/flutter-original.svg",
                     "Dart": "dart/dart-original.svg",
-                    "API Integration": "devicon/icons/google/google-original.svg",
-                    "Algorithms": "devicon/icons/c/c-original.svg"
+                    "Algorithms": "codepen/codepen-plain.svg",
+                    "REST APIs": "fastapi/fastapi-original.svg",
+                    "Embeddings": "googlecloud/googlecloud-original.svg",
+                    "RAG": "brainjs/brainjs-original.svg",
+                    "Capacitor": "ionic/ionic-original.svg"
                   };
                   
                   const iconPath = iconMapping[skill.name] || `${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}/${skill.name.toLowerCase().replace(/\./g, '').replace(/ /g, '')}-original.svg`;
@@ -50,13 +53,19 @@ export default function SkillsSection() {
                         <img 
                           src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${iconPath}`}
                           alt=""
-                          className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-opacity grayscale-0 dark:brightness-200 dark:contrast-100"
+                          className="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity dark:brightness-200 dark:contrast-100"
                           style={{ filter: 'var(--icon-filter)' }}
                           onError={(e) => {
-                            (e.target as HTMLImageElement).style.visibility = 'hidden';
+                            const target = e.target as HTMLImageElement;
+                            // Fallback to plain if original fails
+                            if (target.src.includes('-original.svg')) {
+                              target.src = target.src.replace('-original.svg', '-plain.svg');
+                            } else {
+                              target.style.display = 'none';
+                            }
                           }}
                         />
-                        <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors">{skill.name}</span>
+                        <span className="text-lg font-medium tracking-tight group-hover:text-primary transition-colors text-foreground">{skill.name}</span>
                       </div>
                       <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary transition-colors" />
                     </div>
@@ -65,7 +74,6 @@ export default function SkillsSection() {
               </div>
 
               <div className="mt-8 pt-8 border-t border-border/50">
-                 <p className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Expertise / Verified</p>
               </div>
             </div>
           ))}

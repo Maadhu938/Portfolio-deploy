@@ -56,7 +56,7 @@ export default function ProjectsSection() {
                         href={project.playStoreUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest hover:opacity-50 transition-opacity"
+                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest hover:opacity-50 transition-opacity !text-foreground"
                       >
                         Launch <ArrowUpRight size={14} />
                       </a>
@@ -68,15 +68,15 @@ export default function ProjectsSection() {
           })}
           
           {/* More Projects CTA Card */}
-          <div className="lg:col-span-2 bento-card bg-primary text-primary-foreground flex flex-col items-center justify-center text-center space-y-6 group cursor-pointer overflow-hidden">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent scale-150 group-hover:scale-100 transition-transform duration-1000" />
-             <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-60">Open Source</span>
-             <h4 className="text-2xl font-bold tracking-tighter uppercase relative z-10">Archive & <br /> Repositories</h4>
+          <div className="lg:col-span-2 bento-card !bg-primary !text-primary-foreground flex flex-col items-center justify-center text-center space-y-6 group cursor-pointer overflow-hidden">
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent scale-150 group-hover:scale-100 transition-transform duration-1000 opacity-20" />
+             <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80">Open Source</span>
+             <h4 className="text-2xl font-bold tracking-tighter uppercase relative z-10 !text-primary-foreground">Archive & <br /> Repositories</h4>
              <a 
                href="https://github.com/Maadhu938" 
                target="_blank" 
                rel="noopener noreferrer" 
-               className="p-4 rounded-full bg-primary-foreground text-primary relative z-10 hover:scale-110 transition-transform duration-500"
+               className="p-4 rounded-full bg-primary-foreground !text-primary relative z-10 hover:scale-110 transition-transform duration-500"
              >
                <ArrowUpRight size={24} />
              </a>
