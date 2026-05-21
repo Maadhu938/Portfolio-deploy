@@ -4,7 +4,7 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 
 const ProjectsSection = dynamic(() => import("@/components/ProjectsSection"), {
-  loading: () => <div className="min-h-[400px] flex items-center justify-center opacity-0">Loading Projects...</div>,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center opacity-0 font-mono text-[10px] uppercase tracking-widest">Loading Sequence...</div>,
   ssr: true,
 });
 
@@ -22,16 +22,18 @@ const ContactSection = dynamic(() => import("@/components/ContactSection"), {
 
 export default function Home() {
   return (
-    <main className="relative overflow-x-hidden">
+    <main className="relative overflow-x-hidden selection:bg-primary selection:text-primary-foreground">
+      <div className="noise" />
       <Navbar />
-      <Hero />
       <div className="space-y-0">
+        <Hero />
         <ProjectsSection />
-        <SkillsSection />
         <AboutSection />
+        <SkillsSection />
         <ContactSection />
       </div>
       <Footer />
     </main>
   );
 }
+
