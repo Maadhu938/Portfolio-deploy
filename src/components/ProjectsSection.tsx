@@ -97,6 +97,6 @@ export default function ProjectsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
