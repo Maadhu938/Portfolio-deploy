@@ -27,9 +27,13 @@ export default function ContactSection() {
                >
                  maadhuavati7@gmail.com
                </a>
-               <div className="w-16 h-16 rounded-full bg-primary-foreground !text-primary flex items-center justify-center animate-pulse">
+               <a 
+                 href="mailto:maadhuavati7@gmail.com" 
+                 className="w-16 h-16 rounded-full bg-primary-foreground !text-primary flex items-center justify-center hover:scale-110 active:scale-95 transition-transform animate-pulse"
+                 aria-label="Send Email"
+               >
                   <ArrowUpRight size={32} />
-               </div>
+               </a>
             </div>
           </div>
 
