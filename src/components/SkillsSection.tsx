@@ -16,10 +16,10 @@ export default function SkillsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((cat, i) => (
-            <div key={cat} className={`bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px] ${i === 0 ? 'lg:col-span-2 md:aspect-video lg:aspect-auto' : ''}`}>
+            <div key={cat} className={`bento-card !bg-card border-border p-8 flex flex-col justify-between min-h-[400px] ${i === 0 ? 'lg:col-span-2 md:aspect-video lg:aspect-auto' : ''}`}>
               <div className="space-y-2">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground opacity-50">Layer / 0{i + 1}</span>
-                <h3 className="text-2xl font-bold uppercase tracking-tight">{cat}</h3>
+                <h3 className="text-2xl font-bold uppercase tracking-tight !text-foreground">{cat}</h3>
               </div>
 
               <div className={`grid gap-x-8 gap-y-4 mt-12 ${i === 0 ? 'grid-cols-2' : 'grid-cols-1'}`}>

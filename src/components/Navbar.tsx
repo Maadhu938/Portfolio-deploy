@@ -16,20 +16,20 @@ export default function Navbar() {
       <div className="max-w-[1400px] mx-auto flex items-center justify-between pointer-events-auto">
         
         {/* Logo / Terminal */}
-        <Link href="/" className="bento-card !p-3 !rounded-2xl flex items-center gap-3 group bg-background/80 backdrop-blur-md">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-primary-foreground group-hover:rotate-12 transition-transform">
+        <Link href="/" className="bento-card !p-3 !rounded-2xl flex items-center gap-3 group !bg-background/80 backdrop-blur-md">
+          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center !text-primary-foreground group-hover:rotate-12 transition-transform">
              <Terminal size={18} />
           </div>
-          <span className="font-bold tracking-tighter text-lg uppercase hidden sm:block">M.AVATI</span>
+          <span className="font-bold tracking-tighter text-lg uppercase hidden sm:block !text-foreground">M.AVATI</span>
         </Link>
 
         {/* Links Bento */}
-        <div className="hidden md:flex bento-card !p-2 !rounded-2xl gap-1 bg-background/80 backdrop-blur-md">
+        <div className="hidden md:flex bento-card !p-2 !rounded-2xl gap-1 !bg-background/80 backdrop-blur-md">
           {['Projects', 'About', 'Contact'].map((item) => (
             <Link 
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="px-6 py-2 rounded-xl text-sm font-medium hover:bg-muted transition-colors opacity-70 hover:opacity-100"
+              className="px-6 py-2 rounded-xl text-sm font-medium hover:bg-muted transition-colors opacity-70 hover:opacity-100 !text-foreground"
             >
               {item}
             </Link>
@@ -40,10 +40,10 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <button 
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="bento-card !p-3 !rounded-2xl hover:bg-muted transition-colors bg-background/80 backdrop-blur-md shadow-sm"
+            className="bento-card !p-3 !rounded-2xl hover:bg-muted transition-colors !bg-background/80 backdrop-blur-md shadow-sm"
             aria-label="Toggle Theme"
           >
-            {mounted && (theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />)}
+            {mounted && (theme === 'dark' ? <Sun size={20} className="!text-foreground" /> : <Moon size={20} className="!text-foreground" />)}
           </button>
           
           <button 

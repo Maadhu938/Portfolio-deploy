@@ -9,25 +9,25 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
           {/* Main CTA */}
-          <div className="md:col-span-3 bento-card bg-primary text-primary-foreground p-12 md:p-24 flex flex-col justify-between min-h-[500px] group overflow-hidden">
+          <div className="md:col-span-3 bento-card !bg-primary !text-primary-foreground p-12 md:p-24 flex flex-col justify-between min-h-[500px] group overflow-hidden">
             <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.2),transparent)] pointer-events-none" />
             <div className="space-y-6">
-              <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80">Transmission / Contact</span>
-              <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] uppercase">
+              <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80 !text-primary-foreground/70">Transmission / Contact</span>
+              <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] uppercase !text-primary-foreground">
                 READY <br />
                 TO <br />
-                <span className="opacity-60 font-serif italic lowercase tracking-tight">execute.</span>
+                <span className="opacity-40 font-serif italic lowercase tracking-tight">execute.</span>
               </h2>
             </div>
             
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-12">
                <a 
                  href="mailto:maadhuavati7@gmail.com" 
-                 className="text-2xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-primary-foreground/30"
+                 className="text-2xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-primary-foreground/30 !text-primary-foreground"
                >
                  maadhuavati7@gmail.com
                </a>
-               <div className="w-16 h-16 rounded-full bg-primary-foreground text-primary flex items-center justify-center animate-pulse">
+               <div className="w-16 h-16 rounded-full bg-primary-foreground !text-primary flex items-center justify-center animate-pulse">
                   <ArrowUpRight size={32} />
                </div>
             </div>

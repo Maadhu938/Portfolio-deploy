@@ -11,9 +11,9 @@ export default function ProjectsSection() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-4">
           <div className="space-y-4">
             <h2 className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground border-l-2 border-primary pl-4">Selected Index</h2>
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter">ENGINEERED <span className="opacity-30">UNITS.</span></h3>
+            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter !text-foreground uppercase">ENGINEERED <br /><span className="opacity-30 italic font-serif lowercase">Units.</span></h3>
           </div>
-          <p className="text-muted-foreground max-w-sm text-lg leading-relaxed italic">
+          <p className="text-muted-foreground max-w-sm text-lg leading-relaxed italic border-t border-border pt-4">
             Products focused on data isolation, AI logic, and modular architecture.
           </p>
         </div>
@@ -29,24 +29,29 @@ export default function ProjectsSection() {
                 <div className="flex justify-between items-start">
                   <div className="space-y-2">
                     <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest leading-none">UNIT / 00{i+1}</span>
-                    <h4 className="text-2xl font-bold tracking-tight uppercase leading-none text-foreground">{project.title}</h4>
+                    <h4 className="text-2xl font-bold tracking-tight uppercase leading-none !text-foreground">{project.title}</h4>
                   </div>
                   <div className="flex gap-2">
-                    <a href={project.githubUrl} target="_blank" className="p-2 rounded-full bg-background border border-border hover:bg-primary hover:text-primary-foreground transition-all">
+                    <a 
+                      href={project.githubUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="p-2 rounded-full !bg-background border border-border hover:!bg-primary hover:!text-primary-foreground transition-all !text-foreground"
+                    >
                       <Github size={16} />
                     </a>
                   </div>
                 </div>
 
                 <div className="space-y-6">
-                  <p className={`text-muted-foreground leading-snug line-clamp-3 ${isWide ? 'max-w-xl text-xl' : 'text-sm'}`}>
+                  <p className={`!text-muted-foreground leading-snug line-clamp-3 ${isWide ? 'max-w-xl text-xl' : 'text-sm'}`}>
                     {project.description}
                   </p>
                   
                   <div className="flex items-end justify-between">
                     <div className="flex flex-wrap gap-2">
                       {project.techStack.map(ts => (
-                        <span key={ts} className="text-[9px] font-mono uppercase tracking-tighter px-2 py-0.5 rounded-md bg-background border border-border">
+                        <span key={ts} className="text-[9px] font-mono uppercase tracking-tighter px-2 py-0.5 rounded-md !bg-muted border border-border !text-muted-foreground">
                           {ts}
                         </span>
                       ))}
