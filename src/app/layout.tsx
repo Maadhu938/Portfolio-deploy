@@ -111,6 +111,7 @@ export default function RootLayout({
         <JsonLd />
       </head>
       <body className="antialiased">
+        <div className="noise" />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

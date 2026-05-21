@@ -1,56 +1,51 @@
 export default function AboutSection() {
+    const capabilities = [
+        { title: "Architectural Design", description: "Modular systems, scalable database schemas, and API design." },
+        { title: "Frontend Engineering", description: "High-fidelity interfaces, fluid animations, and performance optimization." },
+        { title: "Applied AI", description: "Integrating LLMs, prompt engineering, and RAG architectures." },
+        { title: "Full-Stack Deployment", description: "End-to-end delivery from serverless logic to mobile wrappers." }
+    ];
+
     return (
-        <section id="about" className="py-16 sm:py-20 bg-[var(--color-bg-secondary)]">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-12">
-                <div className="max-w-2xl">
-                    <h2 className="text-fluid-3xl font-bold text-[var(--color-text-primary)] mb-4 sm:mb-6">
-                        About
-                    </h2>
-
-                    <div className="space-y-4 sm:space-y-5 text-[var(--color-text-secondary)] leading-relaxed">
-                        <p className="text-fluid-base">
-                            Full-stack developer building web and mobile applications.
-                            I focus on practical tools that solve real problems.
-                        </p>
-
-                        <p className="text-fluid-base">
-                            <strong className="text-[var(--color-text-primary)]">
-                                MyNotebook
-                            </strong>{" "}
-                            is my primary project. It combines notes, AI chat, and document uploads
-                            with strict user data isolation. Built with React, Capacitor, Flask, and PostgreSQL.
-                        </p>
-
-                        <p className="text-fluid-base">
-                            I build to ship. Every project here is functional code, not concepts.
-                        </p>
+        <section id="about" className="py-32 px-6 md:px-12 border-t border-[var(--border-subtle)]">
+            <div className="max-w-screen-xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32">
+                    <div className="lg:col-span-4">
+                        <h2 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-8">
+                            01 / Profile
+                        </h2>
                     </div>
+                    <div className="lg:col-span-8">
+                        <div className="space-y-12">
+                            <p className="text-3xl md:text-5xl tracking-tight leading-[1.1] text-[var(--text-primary)]">
+                                Maadhu Avati is a developer obsessed with the intersection of architecture and precision. 
+                                I build interfaces that feel like tools and systems that endure.
+                            </p>
+                            <p className="text-xl text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+                                Currently focusing on projects like <span className="text-[var(--text-primary)] font-medium underline decoration-[var(--border-subtle)] underline-offset-4">MyNotebook</span>, 
+                                where I explore the boundaries of AI-assisted knowledge management and data isolation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                    {/* Stats */}
-                    <div className="grid grid-cols-3 gap-3 sm:gap-4 mt-8 sm:mt-12">
-                        <div className="text-center p-3 sm:p-4 bg-[var(--color-bg-tertiary)] rounded-xl border border-[var(--color-border-subtle)]">
-                            <div className="text-2xl sm:text-3xl font-bold text-[var(--color-accent)] mb-0.5 sm:mb-1">
-                                5+
-                            </div>
-                            <div className="text-xs sm:text-sm text-[var(--color-text-muted)]">
-                                Projects
-                            </div>
-                        </div>
-                        <div className="text-center p-3 sm:p-4 bg-[var(--color-bg-tertiary)] rounded-xl border border-[var(--color-border-subtle)]">
-                            <div className="text-2xl sm:text-3xl font-bold text-[var(--color-accent)] mb-0.5 sm:mb-1">
-                                3+
-                            </div>
-                            <div className="text-xs sm:text-sm text-[var(--color-text-muted)]">
-                                AI/ML Apps
-                            </div>
-                        </div>
-                        <div className="text-center p-3 sm:p-4 bg-[var(--color-bg-tertiary)] rounded-xl border border-[var(--color-border-subtle)]">
-                            <div className="text-2xl sm:text-3xl font-bold text-[var(--color-accent)] mb-0.5 sm:mb-1">
-                                Full
-                            </div>
-                            <div className="text-xs sm:text-sm text-[var(--color-text-muted)]">
-                                Stack
-                            </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-24 border-t border-[var(--border-subtle)]">
+                    <div className="lg:col-span-4">
+                        <h2 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-8">
+                            02 / Capabilities
+                        </h2>
+                    </div>
+                    <div className="lg:col-span-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                            {capabilities.map((cap, i) => (
+                                <div key={i} className="group">
+                                    <div className="text-xs font-mono text-[var(--text-secondary)] mb-4">0{i + 1}</div>
+                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight">{cap.title}</h3>
+                                    <p className="text-[var(--text-secondary)] leading-relaxed underline decoration-transparent group-hover:decoration-[var(--border-subtle)] transition-all">
+                                        {cap.description}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -58,4 +53,3 @@ export default function AboutSection() {
         </section>
     );
 }
-

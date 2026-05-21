@@ -5,47 +5,56 @@ export default function ProjectsSection() {
     const otherProjects = projects.filter((p) => !p.featured);
 
     return (
-        <section id="projects" className="py-24 sm:py-32 bg-[var(--bg-primary)]">
-            <div className="max-w-5xl mx-auto px-6">
-                <div className="mb-16">
-                    <h2 className="text-3xl font-black tracking-tight text-[var(--text-primary)] mb-4">
-                        Selected Works
-                    </h2>
-                    <p className="text-[var(--text-secondary)] text-lg max-w-xl">
-                        A collection of tools and platforms built to solve real-world problems.
-                    </p>
+        <section id="projects" className="py-32 px-6 md:px-12 border-t border-[var(--border-subtle)]">
+            <div className="max-w-screen-xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
+                    <div className="lg:col-span-4">
+                        <h2 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+                            04 / Selected Works
+                        </h2>
+                    </div>
                 </div>
 
-                <div className="space-y-32">
+                <div className="space-y-48">
                     {featuredProjects.map((project, index) => (
-                        <div key={project.title} className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-12 items-center`}>
-                            <div className="w-full md:w-1/2 aspect-video bg-[var(--bg-secondary)] border border-[var(--border-subtle)] rounded-2xl flex items-center justify-center group overflow-hidden relative">
-                                <div className="text-6xl font-black opacity-5 group-hover:scale-110 transition-transform duration-500">
-                                    {project.title.charAt(0)}
+                        <div key={project.title} className="group grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                            <div className="lg:col-span-7">
+                                <div className="aspect-[16/9] bg-[var(--bg-secondary)] border border-[var(--border-subtle)] overflow-hidden relative grayscale hover:grayscale-0 transition-all duration-700">
+                                    <div className="absolute inset-0 flex items-center justify-center text-8xl font-serif italic text-[var(--text-primary)] opacity-10 group-hover:scale-110 transition-transform duration-1000">
+                                        {project.title.charAt(0)}
+                                    </div>
+                                    <div className="absolute inset-0 bg-[var(--text-primary)] opacity-0 group-hover:opacity-[0.03] transition-opacity" />
                                 </div>
-                                <div className="absolute inset-0 bg-[var(--text-primary)] opacity-0 group-hover:opacity-[0.02] transition-opacity" />
                             </div>
-                            <div className="w-full md:w-1/2">
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-[var(--text-muted)] mb-4 block">
+                            <div className="lg:col-span-5 pt-4">
+                                <div className="text-xs font-mono uppercase tracking-widest text-[var(--text-secondary)] mb-6">
                                     {project.status || "Completed"}
-                                </span>
-                                <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-4">{project.title}</h3>
-                                <p className="text-[var(--text-secondary)] mb-6 leading-relaxed">
+                                </div>
+                                <h3 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6">{project.title}</h3>
+                                <p className="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed max-w-md">
                                     {project.description}
                                 </p>
-                                <div className="flex flex-wrap gap-2 mb-8">
+                                <div className="flex flex-wrap gap-x-4 gap-y-2 mb-10">
                                     {project.techStack.map(tech => (
-                                        <span key={tech} className="text-xs font-mono text-[var(--text-muted)] px-3 py-1 bg-[var(--bg-tertiary)] rounded-full">
-                                            {tech}
+                                        <span key={tech} className="text-xs font-mono text-[var(--text-secondary)] uppercase tracking-tighter opacity-60">
+                                            #{tech}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="flex gap-4">
+                                <div className="flex gap-8 border-t border-[var(--border-subtle)] pt-8">
                                     {project.githubUrl && (
-                                        <a href={project.githubUrl} className="text-sm font-bold border-b-2 border-transparent hover:border-[var(--text-primary)] transition-all">GitHub</a>
+                                        <a href={project.githubUrl} className="group flex items-center gap-2 text-sm font-bold tracking-widest uppercase overflow-hidden">
+                                            <span className="relative inline-block transition-transform duration-300 group-hover:-translate-y-full">GitHub</span>
+                                            <span className="absolute inline-block translate-y-full transition-transform duration-300 group-hover:translate-y-0">GitHub</span>
+                                            <span className="text-xs">↗</span>
+                                        </a>
                                     )}
                                     {project.playStoreUrl && (
-                                        <a href={project.playStoreUrl} className="text-sm font-bold text-green-600 border-b-2 border-transparent hover:border-green-600 transition-all">Play Store</a>
+                                        <a href={project.playStoreUrl} className="group flex items-center gap-2 text-sm font-bold tracking-widest uppercase overflow-hidden">
+                                            <span className="relative inline-block transition-transform duration-300 group-hover:-translate-y-full">Play Store</span>
+                                            <span className="absolute inline-block translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-green-500">Play Store</span>
+                                            <span className="text-xs">↗</span>
+                                        </a>
                                     )}
                                 </div>
                             </div>
@@ -54,19 +63,25 @@ export default function ProjectsSection() {
                 </div>
 
                 {otherProjects.length > 0 && (
-                    <div className="mt-32 pt-32 border-t border-[var(--border-subtle)]">
-                        <h3 className="text-xl font-bold mb-12 text-[var(--text-primary)]">Other Noteworthy Projects</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="mt-48">
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-12">
+                            <div className="lg:col-span-4">
+                                <h3 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)]">Archive</h3>
+                            </div>
+                        </div>
+                        <div className="divide-y divide-[var(--border-subtle)] border-t border-b border-[var(--border-subtle)]">
                             {otherProjects.map(project => (
-                                <div key={project.title} className="p-8 bg-[var(--bg-secondary)] border border-[var(--border-subtle)] rounded-2xl hover:border-[var(--text-muted)] transition-all group">
-                                    <h4 className="text-lg font-bold mb-2 group-hover:text-[var(--text-primary)] text-[var(--text-primary)]">{project.title}</h4>
-                                    <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-2">{project.description}</p>
-                                    <div className="flex gap-4">
-                                        {project.githubUrl && (
-                                            <a href={project.githubUrl} className="text-xs font-bold opacity-60 hover:opacity-100 transition-opacity text-[var(--text-primary)]">Source Code</a>
-                                        )}
+                                <a 
+                                    key={project.title} 
+                                    href={project.githubUrl || "#"}
+                                    className="group grid grid-cols-1 md:grid-cols-12 gap-6 py-12 px-2 hover:bg-[var(--text-primary)] hover:text-[var(--bg-primary)] transition-all duration-300"
+                                >
+                                    <div className="md:col-span-4 text-2xl font-bold tracking-tight">{project.title}</div>
+                                    <div className="md:col-span-6 text-[var(--text-secondary)] group-hover:text-[var(--bg-primary)] opacity-80 line-clamp-1 flex items-center">{project.description}</div>
+                                    <div className="md:col-span-2 text-right flex items-center justify-end font-mono text-xs uppercase tracking-widest opacity-40 group-hover:opacity-100">
+                                        View Code ↗
                                     </div>
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </div>
