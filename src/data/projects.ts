@@ -83,6 +83,7 @@ export const skills = [
     { name: "JavaScript", category: "Frontend" },
     { name: "TypeScript", category: "Frontend" },
     { name: "Tailwind CSS", category: "Frontend" },
+    { name: "Flutter", category: "Mobile" },
     { name: "Capacitor", category: "Mobile" },
     { name: "Python", category: "Backend" },
     { name: "Flask", category: "Backend" },
