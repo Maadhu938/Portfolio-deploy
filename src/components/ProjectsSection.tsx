@@ -1,17 +1,26 @@
+"use client";
 import { projects } from "@/data/projects";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { GithubIcon as Github } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function ProjectsSection() {
   const featured = projects.filter(p => p.featured);
 
   return (
-    <section id="projects" className="py-24 px-6 md:px-12 lg:px-24">
+    <motion.section 
+      id="projects" 
+      className="py-16 md:py-24 px-6 md:px-12 lg:px-24"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-4">
           <div className="space-y-4">
             <h2 className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground border-l-2 border-primary pl-4">Selected Index</h2>
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter !text-foreground uppercase">ENGINEERED <br /><span className="opacity-30 italic font-serif lowercase">Units.</span></h3>
+            <h3 className="text-3xl md:text-5xl font-bold tracking-tighter !text-foreground uppercase">ENGINEERED <br /><span className="opacity-30 italic font-serif lowercase">Units.</span></h3>
           </div>
           <p className="text-muted-foreground max-w-sm text-lg leading-relaxed italic border-t border-border pt-4">
             Products focused on data isolation, AI logic, and modular architecture.

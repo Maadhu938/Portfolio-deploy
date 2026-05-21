@@ -1,22 +1,30 @@
 "use client";
 import { skills } from "@/data/projects";
+import { motion } from "framer-motion";
 
 export default function SkillsSection() {
   const categories = [...new Set(skills.map((s) => s.category))];
 
   return (
-    <section id="skills" className="py-24 px-6 md:px-12 lg:px-24">
+    <motion.section 
+      id="skills" 
+      className="py-16 md:py-24 px-6 md:px-12 lg:px-24"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-4">
           <div className="space-y-4">
             <h2 className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground border-l-2 border-primary pl-4">Capabilities</h2>
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase">THE <span className="opacity-30 italic font-serif">STACK.</span></h3>
+            <h3 className="text-3xl md:text-5xl font-bold tracking-tighter uppercase">THE <span className="opacity-30 italic font-serif">STACK.</span></h3>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((cat, i) => (
-            <div key={cat} className={`bento-card !bg-card border-border p-8 flex flex-col justify-between min-h-[400px] ${i === 0 ? 'lg:col-span-2 md:aspect-video lg:aspect-auto' : ''}`}>
+            <div key={cat} className={`bento-card !bg-card border-border p-8 flex flex-col justify-between min-h-[350px] md:min-h-[400px] ${i === 0 ? 'lg:col-span-2 md:aspect-video lg:aspect-auto' : ''}`}>
               <div className="space-y-2">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground opacity-50">Layer / 0{i + 1}</span>
                 <h3 className="text-2xl font-bold uppercase tracking-tight !text-foreground">{cat}</h3>
@@ -55,6 +63,7 @@ export default function SkillsSection() {
                           alt=""
                           className="w-5 h-5 opacity-90 group-hover:opacity-100 transition-opacity dark:brightness-200 dark:contrast-100"
                           style={{ filter: 'var(--icon-filter)' }}
+                          loading="lazy"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             // Fallback to plain if original fails

@@ -1,19 +1,27 @@
 "use client";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram } from "./Icons";
+import { motion } from "framer-motion";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-24 px-6 md:px-12 lg:px-24">
+    <motion.section 
+      id="contact" 
+      className="py-16 md:py-24 px-6 md:px-12 lg:px-24"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="max-w-[1400px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           
           {/* Main CTA */}
-          <div className="md:col-span-3 bento-card !bg-primary !text-primary-foreground p-12 md:p-24 flex flex-col justify-between min-h-[500px] group overflow-hidden">
+          <div className="md:col-span-3 bento-card !bg-primary !text-primary-foreground p-8 md:p-24 flex flex-col justify-between min-h-[400px] md:min-h-[500px] group overflow-hidden">
             <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.1),transparent)] dark:bg-[radial-gradient(circle_at_50%_0%,rgba(0,0,0,0.2),transparent)] pointer-events-none" />
             <div className="space-y-6">
               <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80 !text-primary-foreground/70">Transmission / Contact</span>
-              <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-[0.85] uppercase !text-primary-foreground">
+              <h2 className="text-4xl md:text-8xl font-bold tracking-tighter leading-[0.85] uppercase !text-primary-foreground">
                 READY <br />
                 TO <br />
                 <span className="opacity-40 font-serif italic lowercase tracking-tight">execute.</span>
@@ -23,7 +31,7 @@ export default function ContactSection() {
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-12">
                <a 
                  href="mailto:maadhuavati7@gmail.com" 
-                 className="text-2xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-primary-foreground/30 !text-primary-foreground"
+                 className="text-xl md:text-4xl font-bold tracking-tighter hover:opacity-70 transition-opacity underline underline-offset-8 decoration-primary-foreground/30 !text-primary-foreground break-all"
                >
                  maadhuavati7@gmail.com
                </a>
