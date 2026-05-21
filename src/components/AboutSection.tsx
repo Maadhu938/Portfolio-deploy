@@ -1,55 +1,40 @@
 export default function AboutSection() {
-    const capabilities = [
-        { title: "Architectural Design", description: "Modular systems, scalable database schemas, and API design." },
-        { title: "Frontend Engineering", description: "High-fidelity interfaces, fluid animations, and performance optimization." },
-        { title: "Applied AI", description: "Integrating LLMs, prompt engineering, and RAG architectures." },
-        { title: "Full-Stack Deployment", description: "End-to-end delivery from serverless logic to mobile wrappers." }
-    ];
+  const capabilities = [
+    { title: "Architectural Logic", desc: "Modular thinking applied to digital systems. Scaling from zero to distributed." },
+    { title: "Interface Precision", desc: "Hard-edged layouts centered around utility and cinematic motion." },
+    { title: "Applied Intelligence", desc: "Integrating LLMs into production flows with RAG and custom reasoning." },
+    { title: "Human Centricity", desc: "Designing for the user's intent rather than the developer's convenience." }
+  ];
 
-    return (
-        <section id="about" className="py-32 px-6 md:px-12 border-t border-[var(--border-subtle)]">
-            <div className="max-w-screen-xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32">
-                    <div className="lg:col-span-4">
-                        <h2 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-8">
-                            01 / Profile
-                        </h2>
-                    </div>
-                    <div className="lg:col-span-8">
-                        <div className="space-y-12">
-                            <p className="text-3xl md:text-5xl tracking-tight leading-[1.1] text-[var(--text-primary)]">
-                                Maadhu Avati is a developer obsessed with the intersection of architecture and precision. 
-                                I build interfaces that feel like tools and systems that endure.
-                            </p>
-                            <p className="text-xl text-[var(--text-secondary)] leading-relaxed max-w-2xl">
-                                Currently focusing on projects like <span className="text-[var(--text-primary)] font-medium underline decoration-[var(--border-subtle)] underline-offset-4">MyNotebook</span>, 
-                                where I explore the boundaries of AI-assisted knowledge management and data isolation.
-                            </p>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <section id="about" className="py-24 px-6 md:px-12 lg:px-24 bg-bg">
+      <div className="max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-border pt-12">
+          {/* Label */}
+          <div className="lg:col-span-3">
+             <div className="flex items-center gap-3">
+                <div className="w-1.5 h-1.5 rounded-full bg-fg" />
+                <span className="text-[10px] font-mono uppercase tracking-[0.3em] font-semibold">The Architect</span>
+             </div>
+          </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-24 border-t border-[var(--border-subtle)]">
-                    <div className="lg:col-span-4">
-                        <h2 className="text-sm font-mono uppercase tracking-[0.2em] text-[var(--text-secondary)] mb-8">
-                            02 / Capabilities
-                        </h2>
-                    </div>
-                    <div className="lg:col-span-8">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
-                            {capabilities.map((cap, i) => (
-                                <div key={i} className="group">
-                                    <div className="text-xs font-mono text-[var(--text-secondary)] mb-4">0{i + 1}</div>
-                                    <h3 className="text-xl font-bold mb-4 uppercase tracking-tight">{cap.title}</h3>
-                                    <p className="text-[var(--text-secondary)] leading-relaxed underline decoration-transparent group-hover:decoration-[var(--border-subtle)] transition-all">
-                                        {cap.description}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+          {/* Core Text */}
+          <div className="lg:col-span-9 space-y-12">
+             <h3 className="text-[clamp(1.5rem,5vw,3.5rem)] font-bold tracking-tight leading-[1.05] max-w-4xl">
+               I solve problems using <span className="font-serif italic text-muted">logic as craft</span>. My work exists at the intersection of technical performance and high-fidelity interaction.
+             </h3>
+             
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 pt-12 border-t border-border">
+                {capabilities.map((cap) => (
+                  <div key={cap.title} className="space-y-4">
+                    <h4 className="text-sm font-mono uppercase tracking-widest">{cap.title}</h4>
+                    <p className="text-muted text-lg leading-relaxed">{cap.desc}</p>
+                  </div>
+                ))}
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

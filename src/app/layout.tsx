@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fira_Code } from "next/font/google";
+import { Inter, Fira_Code, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import { ThemeProvider } from "@/components/ThemeProvider";
@@ -16,6 +16,14 @@ const firaCode = Fira_Code({
   display: "swap",
 });
 
+const instrumentSerif = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-instrument-serif",
+  display: "swap",
+  style: "italic",
+});
+
 const siteUrl = "https://maadhuavati.in";
 
 export const viewport: Viewport = {
@@ -23,8 +31,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#0a0e17" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0e17" },
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
   ],
 };
 
@@ -93,7 +101,7 @@ export const metadata: Metadata = {
     creator: "@maadhu_839",
   },
   verification: {
-    google: "your-google-verification-code", // Replace with actual verification code
+    google: "your-google-verification-code",
   },
   category: "technology",
 };
@@ -104,21 +112,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`} suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <JsonLd />
-      </head>
-      <body className="antialiased">
-        <div className="noise" />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${firaCode.variable} ${instrumentSerif.variable} antialiased selection:bg-fg selection:text-bg`}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
+            <JsonLd />
+            <div className="fixed inset-0 pointer-events-none noise overflow-hidden" />
+            {children}
         </ThemeProvider>
       </body>
     </html>

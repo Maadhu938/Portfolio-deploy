@@ -2,64 +2,64 @@
 
 :root {
   --bg: #ffffff;
-  --fg: #111111;
-  --muted: #71717a;
-  --border: #e4e4e7;
-  --accent: #111111;
+  --fg: #000000;
+  --muted: #666666;
+  --border: #e5e5e5;
 }
 
 .dark {
   --bg: #000000;
-  --fg: #f4f4f5;
-  --muted: #a1a1aa;
-  --border: #27272a;
-  --accent: #ffffff;
+  --fg: #ffffff;
+  --muted: #888888;
+  --border: #1a1a1a;
 }
 
 @theme {
-  --font-sans: "Inter", -apple-system, sans-serif;
-  --font-serif: "Instrument Serif", serif;
-  --font-mono: "JetBrains Mono", monospace;
-  
   --color-border: var(--border);
   --color-bg: var(--bg);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-fira-code);
+  --font-serif: var(--font-instrument-serif);
 }
 
-body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@layer base {
+  body {
+    @apply bg-bg text-fg antialiased selection:bg-fg selection:text-bg;
+    font-family: var(--font-inter), sans-serif;
+  }
 }
 
-.noise-bg {
+.noise {
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity: 0.03;
+  z-index: 9999;
   pointer-events: none;
-  z-index: 50;
+  opacity: 0.04;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  filter: contrast(150%) brightness(100%);
 }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-fg/20 hover:bg-fg/40 transition-colors rounded-full;
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(2rem); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 .reveal {
-  animation: slideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-::selection {
-  background: var(--fg);
-  color: var(--bg);
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+  animation: reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
