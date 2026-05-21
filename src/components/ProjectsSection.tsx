@@ -1,74 +1,66 @@
-"use client";
 import { projects } from "@/data/projects";
-import { ExternalLink, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 export default function ProjectsSection() {
+  const featured = projects.filter(p => p.featured);
+
   return (
-    <section id="projects" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
-          <div className="space-y-4">
-            <h2 className="text-sm font-mono uppercase tracking-[0.3em] text-muted-foreground p-1 px-3 border border-border inline-block rounded-full">
-              Works / 001
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-bold tracking-tight">
-              Selected <span className="text-muted-foreground">Projects</span>
-            </h3>
-          </div>
-          <p className="text-muted-foreground max-w-sm text-lg leading-relaxed">
-            A collection of digital products focused on utility, performance, and architecture.
-          </p>
-        </div>
+    <section id="projects" className="bg-background">
+      <div className="border-b border-border py-12 px-6 md:px-12 lg:px-20 flex justify-between items-end">
+         <h2 className="text-sm font-mono uppercase tracking-[0.4em] font-bold">Selected Index</h2>
+         <span className="font-mono text-[10px] uppercase opacity-40">Scroll to Explore / {featured.length} Units</span>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {projects.filter(p => p.featured).map((project) => (
-            <div 
-              key={project.title} 
-              className="group relative flex flex-col space-y-6 p-1 rounded-3xl bg-muted/50 border border-border transition-all hover:bg-muted/80"
-            >
-              {/* Image / Card */}
-              <div className="aspect-[16/10] bg-background rounded-2xl overflow-hidden relative border border-border">
-                <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-transparent flex items-center justify-center p-12">
-                   <div className="text-9xl font-bold tracking-tighter opacity-[0.03] group-hover:scale-110 transition-transform duration-1000">
-                     {project.title.charAt(0)}
-                   </div>
-                </div>
-                
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-background/20 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition-all duration-500 flex items-center justify-center gap-4">
-                  {project.playStoreUrl && (
-                    <a href={project.playStoreUrl} target="_blank" className="p-4 bg-foreground text-background rounded-full hover:scale-110 transition-transform shadow-xl">
-                      <ExternalLink size={24} />
-                    </a>
-                  )}
-                  <a href={project.githubUrl} target="_blank" className="p-4 bg-background text-foreground rounded-full hover:scale-110 transition-transform shadow-xl border border-border">
-                    <Github size={24} />
-                  </a>
-                </div>
-              </div>
+      <div className="divide-y divide-border">
+        {featured.map((project, i) => (
+          <div key={project.title} className="group grid grid-cols-1 lg:grid-cols-12 hover:bg-muted/50 transition-colors duration-500">
+            {/* Index Unit */}
+            <div className="p-8 lg:p-12 lg:col-span-1 border-r border-border font-mono text-xs opacity-40 group-hover:opacity-100 transition-opacity">
+              0{i + 1}
+            </div>
 
-              {/* Text Info */}
-              <div className="px-6 pb-8 space-y-4">
-                <div className="flex flex-wrap gap-2">
+            {/* Title & Description */}
+            <div className="p-8 lg:p-12 lg:col-span-5 border-r border-border space-y-6">
+               <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase leading-none">
+                 {project.title}
+               </h3>
+               <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
+                 {project.description}
+               </p>
+               <div className="flex flex-wrap gap-2 pt-4">
                   {project.techStack.map(ts => (
-                    <span key={ts} className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-border bg-background">
+                    <span key={ts} className="font-mono text-[9px] uppercase tracking-widest px-2 py-1 border border-border rounded-full hover:bg-foreground hover:text-background transition-colors">
                       {ts}
                     </span>
                   ))}
-                </div>
-                
-                <div className="space-y-2">
-                  <h4 className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h4>
-                  <p className="text-muted-foreground leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </div>
-              </div>
+               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Visualization / Hover Image */}
+            <div className="hidden lg:block lg:col-span-4 border-r border-border relative overflow-hidden group">
+               <div className="absolute inset-0 flex items-center justify-center bg-muted/20">
+                  <span className="font-mono text-[10px] uppercase tracking-widest opacity-20">Media_Preview_0{i+1}</span>
+               </div>
+               {/* This would be an Actual Image in a real world - using a styled div to simulate high-end feel */}
+               <div className="absolute inset-0 bg-foreground scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" />
+               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-300">
+                  <span className="text-background font-mono text-xs uppercase tracking-[0.5em]">{project.title.split('').join(' ')}</span>
+               </div>
+            </div>
+
+            {/* Action */}
+            <div className="p-8 lg:p-12 lg:col-span-2 flex flex-col justify-between items-end group/link">
+               <a 
+                 href={project.playStoreUrl || project.githubUrl} 
+                 target="_blank"
+                 className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover/link:bg-foreground group-hover/link:text-background group-hover/link:border-foreground transition-all duration-500"
+               >
+                 <ArrowUpRight size={20} />
+               </a>
+               <span className="font-mono text-[10px] uppercase tracking-widest opacity-40">View Unit</span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

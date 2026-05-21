@@ -1,50 +1,5 @@
 @import "tailwindcss";
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
-  --radius: 1rem;
-}
-
-.dark {
-  --background: 240 10% 2%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
-}
-
 @theme {
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
@@ -55,8 +10,6 @@
   --color-primary-foreground: hsl(var(--primary-foreground));
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
   --color-accent: hsl(var(--accent));
@@ -66,59 +19,76 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-lg: 0px;
+  --radius-md: 0px;
+  --radius-sm: 0px;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular;
+  --font-serif: var(--font-instrument-serif), serif;
+}
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 5% 40%;
+  --border: 0 0% 90%;
+  --primary: 0 0% 0%;
+  --primary-foreground: 0 0% 100%;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --muted: 240 5% 10%;
+  --muted-foreground: 240 5% 60%;
+  --border: 0 0% 15%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 0%;
 }
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    @apply bg-background text-foreground antialiased selection:bg-foreground selection:text-background;
+    font-family: var(--font-inter), sans-serif;
   }
 }
 
-.glass {
-  @apply bg-background/60 backdrop-blur-md border border-foreground/10;
+/* Hard Architect Layout */
+.grid-line {
+  @apply border-l border-border;
 }
 
-.glow {
-  position: absolute;
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(var(--primary), 0.05) 0%, transparent 70%);
-  top: -25vw;
-  left: -25vw;
+.noise {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
   pointer-events: none;
-  z-index: -1;
+  opacity: 0.05;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  mix-blend-mode: overlay;
 }
 
-.dark .glow {
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+/* Animations */
+@keyframes reveal {
+  from { clip-path: inset(100% 0 0 0); transform: translateY(20px); }
+  to { clip-path: inset(0 0 0 0); transform: translateY(0); }
 }
 
-.float {
-  animation: float 6s ease-in-out infinite;
+.reveal {
+  animation: reveal 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-/* Custom transitions */
-.page-reveal {
-  animation: page-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes page-reveal {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Custom Cursor Placeholder */
+.cursor-dot {
+  @apply fixed w-2 h-2 bg-foreground rounded-full pointer-events-none z-[10000] mix-blend-difference;
 }

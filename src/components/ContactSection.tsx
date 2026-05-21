@@ -1,42 +1,36 @@
 "use client";
-import { Mail, ArrowUpRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="relative overflow-hidden rounded-[3rem] bg-foreground text-background p-12 md:p-24 flex flex-col items-center text-center space-y-12">
-          {/* Decorative Glow */}
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-background/10 rounded-full blur-3xl" />
-          
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-none">
-            Ready to build <br /> 
-            <span className="opacity-40 italic">the future?</span>
-          </h2>
-          
-          <p className="text-xl text-background/60 max-w-xl mx-auto">
-            Currently accepting new projects and collaborations. Let's turn your logic into a high-fidelity reality.
-          </p>
+    <section id="contact" className="grid grid-cols-1 lg:grid-cols-12 border-b border-border">
+      <div className="lg:col-span-8 p-12 md:p-24 space-y-12">
+         <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground uppercase">Transmission / Contact</span>
+         <h2 className="text-7xl md:text-9xl font-bold tracking-tighter leading-[0.8]">
+           READY <br />
+           TO <br />
+           <span className="font-serif italic lowercase tracking-tight opacity-40">execute.</span>
+         </h2>
+      </div>
 
-          <div className="flex flex-col sm:flex-row gap-6 w-full justify-center pt-8">
-            <a 
-              href="mailto:maadhuavati7@gmail.com" 
-              className="flex items-center justify-center gap-3 bg-background text-foreground px-10 py-5 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl"
-            >
-              <Mail size={20} />
+      <div className="lg:col-span-4 border-l border-border divide-y divide-border">
+         <div className="p-12 space-y-6">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Digital / Mail</span>
+            <a href="mailto:maadhuavati7@gmail.com" className="block text-2xl font-medium tracking-tight hover:translate-x-2 transition-transform">
               maadhuavati7@gmail.com
             </a>
-            
-            <a 
-              href="https://linkedin.com/in/maadhu-avati-525435279" 
-              target="_blank"
-              className="flex items-center justify-center gap-2 border border-background/20 px-10 py-5 rounded-full font-bold text-lg hover:bg-background/10 transition-all"
-            >
-              LinkedIn
-              <ArrowUpRight size={20} className="opacity-40" />
+         </div>
+         <div className="p-12 space-y-6">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Network / LinkedIn</span>
+            <a href="https://linkedin.com/in/maadhu-avati-525435279" target="_blank" className="block text-2xl font-medium tracking-tight hover:translate-x-2 transition-transform">
+              @maadhu-avati
             </a>
-          </div>
-        </div>
+         </div>
+         <div className="p-12 space-y-6">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Network / GitHub</span>
+            <a href="https://github.com/Maadhu938" target="_blank" className="block text-2xl font-medium tracking-tight hover:translate-x-2 transition-transform">
+              @maadhu938
+            </a>
+         </div>
       </div>
     </section>
   );

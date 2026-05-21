@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Moon, Sun, Monitor } from "lucide-react";
+import { Command } from "lucide-react";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -11,40 +11,37 @@ export default function Navbar() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-6">
-      <nav className="flex items-center gap-2 p-1.5 rounded-full glass border border-foreground/10 shadow-2xl">
-        <div className="flex items-center gap-1 px-3 py-2 mr-4">
-          <Link href="/" className="text-sm font-bold tracking-tighter hover:opacity-50 transition-opacity">
-            MA.
-          </Link>
-        </div>
-        
-        <div className="hidden md:flex items-center gap-1">
-          {['Works', 'About', 'Contact'].map((item) => (
-            <Link 
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="px-4 py-2 text-xs font-medium text-muted-foreground hover:text-foreground hover:bg-foreground/5 rounded-full transition-all"
-            >
-              {item}
-            </Link>
-          ))}
-        </div>
+    <nav className="fixed top-0 left-0 w-full z-[100] grid grid-cols-1 lg:grid-cols-12 border-b border-border bg-background/80 backdrop-blur-md">
+      {/* Brand Unit */}
+      <div className="lg:col-span-1 p-6 border-r border-border flex items-center justify-center">
+         <Link href="/" className="font-bold text-xl tracking-tighter">MA.</Link>
+      </div>
 
-        <div className="w-[1px] h-4 bg-foreground/10 mx-2" />
+      {/* Navigation Space */}
+      <div className="lg:col-span-10 px-12 hidden lg:flex items-center justify-center gap-16">
+         {['Works', 'About', 'Skills', 'Contact'].map((item) => (
+           <Link 
+             key={item}
+             href={`#${item.toLowerCase()}`}
+             className="font-mono text-[10px] uppercase tracking-[0.3em] hover:opacity-50 transition-opacity relative group"
+           >
+             {item}
+             <span className="absolute -bottom-1 left-0 w-0 h-px bg-foreground transition-all group-hover:w-full" />
+           </Link>
+         ))}
+      </div>
 
-        {mounted && (
-          <div className="flex items-center gap-1">
-            <button 
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-full hover:bg-foreground/5 transition-all"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? <Sun size={14} /> : <Moon size={14} />}
-            </button>
-          </div>
-        )}
-      </nav>
-    </div>
+      {/* Control Unit */}
+      <div className="lg:col-span-1 p-6 border-l border-border flex items-center justify-center gap-6">
+         {mounted && (
+           <button 
+             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+             className="font-mono text-[10px] uppercase tracking-widest hover:invert transition-all bg-foreground text-background px-3 py-1"
+           >
+             {theme === 'dark' ? 'LIT' : 'DRK'}
+           </button>
+         )}
+      </div>
+    </nav>
   );
 }

@@ -1,69 +1,54 @@
 "use client";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6 overflow-hidden">
-      {/* Background Aesthetic */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[40rem] h-[40rem] bg-primary/5 rounded-full blur-[120px] dark:bg-white/2" />
-        <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-primary/5 rounded-full blur-[100px] dark:bg-white/2" />
+    <section className="relative min-h-screen grid grid-cols-1 lg:grid-cols-12 border-b border-border">
+      {/* Left Column: Vertical Branding */}
+      <div className="hidden lg:flex lg:col-span-1 border-r border-border flex-col justify-between py-12 items-center">
+         <span className="font-mono text-[10px] uppercase tracking-[0.5em] rotate-180 [writing-mode:vertical-lr]">Established 2026</span>
+         <div className="w-px h-24 bg-border" />
+         <span className="font-mono text-[10px] uppercase tracking-[0.5em] [writing-mode:vertical-lr]">Based in India</span>
       </div>
 
-      <div className="relative z-10 max-w-5xl w-full text-center space-y-8 page-reveal">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-4">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          Available for new opportunities
+      {/* Main Column */}
+      <div className="lg:col-span-11 flex flex-col justify-between">
+        <div className="pt-40 px-6 md:px-12 lg:px-20 space-y-12">
+           <div className="inline-flex items-center gap-4 reveal">
+              <div className="h-px w-12 bg-foreground" />
+              <span className="font-mono text-xs uppercase tracking-widest italic">Full-Stack Engineer</span>
+           </div>
+
+           <h1 className="text-[clamp(4rem,18vw,16rem)] font-bold tracking-tighter leading-[0.75] reveal [animation-delay:200ms]">
+              MAADHU<br />
+              <span className="font-serif italic font-light opacity-80 opacity-40">AVATI.</span>
+           </h1>
         </div>
 
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-[0.9]">
-          MAADHU <br /> 
-          <span className="text-muted-foreground/40">AVATI</span>
-        </h1>
+        {/* Hero Footer */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-border">
+           <div className="p-8 lg:p-12 border-b md:border-b-0 md:border-r border-border space-y-6 reveal [animation-delay:400ms]">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Philosophy / 01</span>
+              <p className="text-xl leading-snug tracking-tight">
+                Building digital systems with <span className="font-serif italic">architectural rigor</span> and human-centric nuance.
+              </p>
+           </div>
+           
+           <div className="p-8 lg:p-12 border-b md:border-b-0 lg:border-r border-border space-y-6 reveal [animation-delay:500ms]">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">Status / 02</span>
+              <div className="flex items-center gap-3">
+                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                 <span className="text-xl">Available for 2026 Q3 Projects.</span>
+              </div>
+           </div>
 
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          A full-stack engineer building digital products that balance <span className="text-foreground font-medium">high-performance logic</span> with <span className="text-foreground font-medium">immaculate design</span>.
-        </p>
-
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-          <Link 
-            href="#projects" 
-            className="group flex items-center gap-2 bg-foreground text-background px-8 py-4 rounded-full font-medium transition-all hover:scale-105 active:scale-95"
-          >
-            Selected Projects
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </Link>
-          
-          <div className="flex items-center gap-2 h-14 px-6 rounded-full border border-border bg-background/50 backdrop-blur-sm">
-            <a href="https://github.com/Maadhu938" target="_blank" className="hover:text-muted-foreground transition-colors p-2">
-              <Github size={20} />
-            </a>
-            <div className="w-[1px] h-4 bg-border" />
-            <a href="https://linkedin.com/in/maadhu-avati-525435279" target="_blank" className="hover:text-muted-foreground transition-colors p-2">
-              <Linkedin size={20} />
-            </a>
-            <div className="w-[1px] h-4 bg-border" />
-            <a href="mailto:maadhuavati7@gmail.com" className="hover:text-muted-foreground transition-colors p-2">
-              <Mail size={20} />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Hero Bottom - Stats/Stack */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-7xl px-6 hidden md:flex justify-between items-end border-t border-border/50 pt-8 opacity-50 text-[10px] font-mono uppercase tracking-[0.2em]">
-        <div className="flex flex-col gap-1">
-          <span>Andhra Pradesh, India</span>
-          <span>16.59° N, 77.94° E</span>
-        </div>
-        <div className="text-right">
-          <span>React / Next.js / Flask</span>
-          <br />
-          <span>PostgreSQL / AI Logic</span>
+           <div className="p-8 lg:p-12 flex items-center justify-between group cursor-pointer hover:bg-foreground hover:text-background transition-colors duration-700 reveal [animation-delay:600ms]">
+              <div className="space-y-2">
+                <span className="font-mono text-[10px] uppercase tracking-widest opacity-60">Action / 03</span>
+                <span className="block text-2xl font-bold uppercase tracking-tighter">Explore Works</span>
+              </div>
+              <ArrowRight size={32} className="group-hover:translate-x-4 transition-transform duration-700" />
+           </div>
         </div>
       </div>
     </section>

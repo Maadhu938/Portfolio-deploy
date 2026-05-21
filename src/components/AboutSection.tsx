@@ -1,45 +1,46 @@
 export default function AboutSection() {
-  const values = [
-    { title: "Architecture", desc: "Thinking in systems before writing a single line of code." },
-    { title: "Performance", desc: "Optimizing for the edge—speed is a feature, not an afterthought." },
-    { title: "Precision", desc: "Pixel perfection and structural integrity in every component." }
+  const principles = [
+    { title: "First Principles", desc: "I break complex problems down to their fundamental truths before building up." },
+    { title: "System Logic", desc: "Design is not just what it looks like, it's how the architectural pieces fit together." },
+    { title: "Human Scale", desc: "Technology should feel natural. I optimize for the hand, the eye, and the intent." }
   ];
 
   return (
-    <section id="about" className="py-32 bg-foreground text-background">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
-          <div className="space-y-12">
-            <h2 className="text-5xl md:text-6xl font-bold tracking-tighter leading-none uppercase">
-              Merging <br /> 
-              Logic with <br />
-              <span className="text-background/40">Imagination</span>
+    <section id="about" className="grid grid-cols-1 lg:grid-cols-12 border-b border-border">
+      {/* Visual Side */}
+      <div className="lg:col-span-5 bg-foreground text-background p-12 md:p-24 flex flex-col justify-between min-h-[60svh]">
+         <div className="space-y-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">Core Values</span>
+            <h2 className="text-6xl md:text-7xl font-bold tracking-tighter leading-[0.85] uppercase">
+              Truth in <br />
+              <span className="font-serif italic lowercase tracking-tight opacity-60">Architecture.</span>
             </h2>
-            
-            <div className="space-y-6 text-xl text-background/80 leading-relaxed max-w-xl">
-              <p>
-                I'm a Full-Stack Engineer based in India, specializing in building products that solve complex problems with elegant solutions.
-              </p>
-              <p>
-                My approach is rooted in structural integrity. Whether it's a mobile app for students or an AI-driven knowledge base, I focus on building foundations that scale.
-              </p>
-            </div>
-          </div>
+         </div>
+         <div className="font-mono text-[10px] uppercase tracking-widest opacity-40">
+           Maadhu Avati / Developer & Designer
+         </div>
+      </div>
 
-          <div className="grid grid-cols-1 gap-12 pt-8">
-            {values.map((v, i) => (
-              <div key={v.title} className="group border-t border-background/10 pt-8">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs font-mono opacity-40 uppercase tracking-widest">0{i+1}</span>
-                  <h3 className="text-3xl font-bold uppercase tracking-tight">{v.title}</h3>
-                </div>
-                <p className="text-lg text-background/60 leading-relaxed max-w-md ml-auto text-right">
-                  {v.desc}
-                </p>
+      {/* Narrative Side */}
+      <div className="lg:col-span-7 p-12 md:p-24 space-y-24">
+         <div className="space-y-8">
+            <h3 className="text-3xl md:text-4xl font-bold tracking-tight max-w-xl">
+              I am a developer who treats code as <span className="text-muted-foreground font-light">spatial engineering</span>.
+            </h3>
+            <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
+              Currently based in India, I collaborate with global partners to build digital products that endure. 
+              I specialize in bridging the gap between brute-force performance and high-fidelity aesthetics.
+            </p>
+         </div>
+
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {principles.map((p, i) => (
+              <div key={p.title} className="space-y-4">
+                 <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">0{i+1} — {p.title}</div>
+                 <p className="text-lg leading-snug tracking-tight">{p.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
+         </div>
       </div>
     </section>
   );
