@@ -1,6 +1,6 @@
 "use client";
 import { ArrowUpRight, Mail } from "lucide-react";
-import { GithubIcon as Github, LinkedinIcon as Linkedin, TwitterIcon as Twitter } from "./Icons";
+import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram } from "./Icons";
 import Link from "next/link";
 import { projects, skills } from "@/data/projects";
 
@@ -65,7 +65,7 @@ export default function Hero() {
                     rel="noopener noreferrer" 
                     className="flex items-center justify-center aspect-square rounded-2xl bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-all"
                   >
-                    <Twitter size={20} />
+                    <Instagram size={20} />
                   </a>
                   <a 
                     href="mailto:maadhuavati7@gmail.com" 
