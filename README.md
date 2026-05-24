@@ -1,6 +1,6 @@
-# Maadhu Avati - Portfolio
+# Maadhu Avati - Premium Portfolio
 
-A modern, responsive portfolio website built with Next.js 16, showcasing my projects, skills, and experience as a Full-Stack Developer.
+A high-performance, Bento Grid style portfolio built with **Next.js 16 (Turbopack)** and **React 19**, focused on showcase engineering excellence, AI systems, and refined digital interfaces.
 
 🌐 **Live Site:** [maadhuavati.in](https://maadhuavati.in)
 
@@ -8,13 +8,12 @@ A modern, responsive portfolio website built with Next.js 16, showcasing my proj
 
 ## ✨ Features
 
-- **Responsive Design** - Optimized for mobile, tablet, and desktop devices
-- **Fluid Typography** - Smooth text scaling using CSS `clamp()`
-- **Touch-Friendly** - 48px minimum touch targets for mobile accessibility
-- **SEO Optimized** - Structured data, sitemap, and Open Graph meta tags
-- **Dark Theme** - Modern dark UI with accent highlights
-- **Smooth Animations** - Subtle hover effects and transitions
-- **Accessibility** - Focus states, ARIA labels, reduced motion support
+- **Premium Bento Grid** - Modern high-contrast architectural layout
+- **Theme Toggle** - Persistence-based Light/Dark mode with high-contrast utility overrides
+- **Real-time Animations** - Interactive scroll-reveal and hover states powered by `framer-motion`
+- **Mobile Optimized** - Fully responsive logic with fluid typography and adaptive grid-stacking
+- **Performance Focused** - Lazy-loading for all technical icons and dynamic component splitting
+- **Vercel Native** - Optimized for high-speed global delivery via Vercel Edge Network
 
 ---
 
@@ -22,11 +21,12 @@ A modern, responsive portfolio website built with Next.js 16, showcasing my proj
 
 | Technology | Purpose |
 |------------|---------|
-| **Next.js 16** | React framework with App Router |
-| **React 19** | UI component library |
-| **TypeScript** | Type-safe JavaScript |
-| **Tailwind CSS 4** | Utility-first CSS framework |
-| **Netlify** | Hosting and deployment |
+| **Next.js 16** | Turbopack-enabled React framework |
+| **React 19** | Latest UI foundation |
+| **Tailwind CSS 4** | Utility-first styling with custom theme blocks |
+| **Framer Motion** | Physics-based scroll and entrance animations |
+| **Lucide & Devicons** | Technical iconography with fallback logic |
+| **Vercel** | Production hosting and edge deployment |
 
 ---
 
@@ -34,30 +34,23 @@ A modern, responsive portfolio website built with Next.js 16, showcasing my proj
 
 ```
 portfolio/
-├── public/
-│   ├── robots.txt          # Search engine crawling rules
-│   ├── sitemap.xml         # XML sitemap for SEO
-│   └── ...                 # Static assets
+├── public/                 # Static assets (robots, sitemap)
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx      # Root layout with SEO metadata
-│   │   ├── page.tsx        # Home page
-│   │   └── globals.css     # Global styles & CSS variables
+│   │   ├── layout.tsx      # Provider-wrapped root layout
+│   │   ├── page.tsx        # Dynamic entry point (Lazy loading)
+│   │   └── globals.css     # Tailwind v4 theme & Noise overlay
 │   ├── components/
-│   │   ├── Navbar.tsx      # Responsive navigation
-│   │   ├── Hero.tsx        # Hero section with featured project
-│   │   ├── ProjectsSection.tsx
-│   │   ├── ProjectCard.tsx # Individual project cards
-│   │   ├── ProjectRow.tsx  # Horizontal scrolling row
-│   │   ├── SkillsSection.tsx
-│   │   ├── ArchitectureSection.tsx
-│   │   ├── AboutSection.tsx
-│   │   ├── ContactSection.tsx
-│   │   ├── Footer.tsx
-│   │   └── JsonLd.tsx      # Structured data for SEO
+│   │   ├── Navbar.tsx      # Theme-aware responsive navigation
+│   │   ├── Hero.tsx        # High-impact identity block
+│   │   ├── ProjectsSection.tsx # Unit-based project grid
+│   │   ├── SkillsSection.tsx # Tech stack with adaptive icons
+│   │   ├── AboutSection.tsx # Minimalist visual quote block
+│   │   ├── ContactSection.tsx # "Ready to Execute" CTA
+│   │   └── Icons.tsx       # Custom SVG Definitions (PlayStore, LinkedIn, etc.)
 │   └── data/
-│       └── projects.ts     # Project & skills data
-├── netlify.toml            # Netlify deployment config
+│       └── projects.ts     # Source of truth for all content
+├── next.config.ts          # Build optimization settings
 ├── package.json
 └── README.md
 ```
@@ -75,8 +68,7 @@ portfolio/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Maadhu938/portfolio.git
-   cd portfolio
+   git clone https://github.com/Maadhu938/Portfolio-deploy.git
    ```
 
 2. **Install dependencies**
@@ -89,121 +81,17 @@ portfolio/
    npm run dev
    ```
 
-4. **Open in browser**
-   ```
-   http://localhost:3000
-   ```
-
-### Build for Production
-
-```bash
-npm run build
-```
-
----
-
-## 🎨 Customization
-
-### Adding/Editing Projects
-
-Edit `src/data/projects.ts`:
-
-```typescript
-export const projects = [
-    {
-        title: "Project Name",
-        description: "Brief description of the project",
-        techStack: ["React", "Node.js", "PostgreSQL"],
-        githubUrl: "https://github.com/username/repo",
-        liveUrl: "https://project-demo.com",
-        status: "Active Development",
-        featured: true  // Shows in hero section
-    },
-    // Add more projects...
-];
-```
-
-### Adding/Editing Skills
-
-Edit the `skills` array in `src/data/projects.ts`:
-
-```typescript
-export const skills = [
-    { name: "React", category: "Frontend" },
-    { name: "Python", category: "Backend" },
-    // Add more skills...
-];
-```
-
-### Changing Theme Colors
-
-Edit CSS variables in `src/app/globals.css`:
-
-```css
-@theme {
-  --color-bg-primary: #0a0e17;
-  --color-accent: #3b82f6;
-  /* ... other colors */
-}
-```
-
----
-
-## 📱 Responsive Breakpoints
-
-| Breakpoint | Screen Size | Device |
-|------------|-------------|--------|
-| Default | < 640px | Mobile |
-| `sm:` | ≥ 640px | Large phones |
-| `md:` | ≥ 768px | Tablets |
-| `lg:` | ≥ 1024px | Laptops |
-| `xl:` | ≥ 1280px | Desktops |
-
----
-
-## 🔍 SEO Features
-
-- **Meta Tags** - Title, description, keywords, Open Graph, Twitter cards
-- **Structured Data** - JSON-LD schema for Person and Website
-- **Sitemap** - XML sitemap at `/sitemap.xml`
-- **Robots.txt** - Search engine crawling rules at `/robots.txt`
-- **Canonical URL** - Prevents duplicate content issues
-
----
-
-## 🌐 Deployment
-
-This project is configured for **Netlify** deployment:
-
-1. Push code to GitHub
-2. Connect repository to Netlify
-3. Netlify auto-detects settings from `netlify.toml`
-4. Add custom domain in Netlify dashboard
-
-### Netlify Configuration
-
-The `netlify.toml` includes:
-- Next.js plugin for SSR/SSG support
-- Security headers (X-Frame-Options, CSP, etc.)
-- Cache headers for static assets
-- Automatic HTTPS
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ---
 
 ## 👨‍💻 Author
 
-**Maadhu Avati**
+**Maadhu Avati** — Full-Stack Engineer based in Bangalore, India.
 
 - GitHub: [@Maadhu938](https://github.com/Maadhu938)
 - LinkedIn: [Maadhu Avati](https://www.linkedin.com/in/maadhu-avati-525435279)
-- Email: maadhuavati07@gmail.com
+- Instagram: [@maadhu_839](https://instagram.com/maadhu_839)
+- Email: maadhuavati7@gmail.com
 
 ---
 
-Made with ❤️ using Next.js
+Engineered for precision. Built with Next.js 16.
