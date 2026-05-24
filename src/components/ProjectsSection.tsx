@@ -1,7 +1,7 @@
 "use client";
 import { projects } from "@/data/projects";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { GithubIcon as Github } from "./Icons";
+import { GithubIcon as Github, PlayStoreIcon as PlayStore } from "./Icons";
 import { motion } from "framer-motion";
 
 export default function ProjectsSection() {
@@ -70,9 +70,10 @@ export default function ProjectsSection() {
                         href={project.playStoreUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest hover:opacity-50 transition-opacity !text-foreground"
+                        className="p-2 rounded-full !bg-background border border-border hover:!bg-primary hover:!text-primary-foreground transition-all !text-foreground"
+                        aria-label="View on Play Store"
                       >
-                        Launch <ArrowUpRight size={14} />
+                        <PlayStore size={18} />
                       </a>
                     )}
                   </div>
