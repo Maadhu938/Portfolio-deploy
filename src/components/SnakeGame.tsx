@@ -96,6 +96,11 @@ export default function SnakeGame() {
     const dx = e.changedTouches[0].clientX - touchStart.current[0];
     const dy = e.changedTouches[0].clientY - touchStart.current[1];
     
+    // Prevent accidental scroll on mobile while playing
+    if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+      if (e.cancelable) e.preventDefault();
+    }
+    
     if (Math.abs(dx) > Math.abs(dy)) {
       if (dx > 30 && direction[0] !== -1) setDirection([1, 0]);
       else if (dx < -30 && direction[0] !== 1) setDirection([-1, 0]);
@@ -121,12 +126,12 @@ export default function SnakeGame() {
     >
       {/* HUD */}
       <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-primary">Score: {score}</span>
-        {isGameOver && <span className="text-[10px] font-mono text-red-500 uppercase font-bold">Terminal Error</span>}
+        <span className="text-[10px] font-mono uppercase tracking-widest text-primary drop-shadow-md">Score: {score}</span>
+        {isGameOver && <span className="text-[10px] font-mono text-red-500 uppercase font-bold animate-pulse">Critical Fail</span>}
       </div>
 
       {/* Game Board */}
-      <div className="flex-1 grid grid-cols-15 grid-rows-15 p-1 gap-px bg-white/5 border border-white/10 m-4 rounded-lg">
+      <div className="flex-1 grid grid-cols-15 grid-rows-15 p-1 gap-px bg-white/5 border border-white/10 m-4 rounded-xl shadow-inner">
         {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => {
           const x = i % GRID_SIZE;
           const y = Math.floor(i / GRID_SIZE);
