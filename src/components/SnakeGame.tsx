@@ -16,7 +16,7 @@ export default function SnakeGame() {
   const gameContainerRef = useRef<HTMLDivElement>(null);
 
   const generateFood = useCallback(() => {
-    let newFood;
+    let newFood: [number, number];
     while (true) {
       newFood = [
         Math.floor(Math.random() * GRID_SIZE),
