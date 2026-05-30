@@ -1,4 +1,6 @@
 "use client";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram } from "./Icons";
 import Link from "next/link";
@@ -6,6 +8,24 @@ import { projects, skills } from "@/data/projects";
 
 export default function Hero() {
   const featured = projects.filter(p => p.featured).slice(0, 3);
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Calculate rotations for Bangalore time
+  const getBangaloreTime = () => {
+    return new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
+  };
+
+  const bentoTime = getBangaloreTime();
+  const seconds = bentoTime.getSeconds();
+  const minutes = bentoTime.getMinutes();
+  const hours = bentoTime.getHours();
 
   return (
     <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-6 md:px-12 lg:px-24">
@@ -34,13 +54,82 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Location Bento */}
+          {/* Detailed Info Bento */}
           <div className="md:col-span-1">
-            <div className="bento-card bg-card border-border flex flex-col justify-between p-6 h-full min-h-[210px]">
-              <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Location</span>
-              <div className="space-y-1">
-                <div className="text-xl font-bold tracking-tight">Bangalore</div>
-                <div className="text-sm text-muted-foreground">India — GMT+5:30</div>
+            <div className="bento-card bg-card border-border flex flex-col justify-between p-8 h-full min-h-[450px] relative overflow-hidden group">
+              {/* Subtle background decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl transition-colors group-hover:bg-primary/10" />
+              
+              <div className="space-y-12 relative z-10">
+                <div className="flex flex-col items-center gap-6">
+                  <div className="relative w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center bg-muted/30">
+                    {/* Hour markings */}
+                    {[...Array(12)].map((_, i) => (
+                      <div
+                        key={i}
+                        className="absolute w-0.5 h-1.5 bg-muted-foreground/30"
+                        style={{
+                          transform: `rotate(${i * 30}deg) translateY(-54px)`,
+                        }}
+                      />
+                    ))}
+                    
+                    {/* Hour Hand */}
+                    <motion.div
+                      className="absolute w-1 h-10 bg-foreground/80 rounded-full origin-bottom"
+                      animate={{ rotate: (hours % 12) * 30 + minutes * 0.5 }}
+                      transition={{ type: "spring", stiffness: 50 }}
+                      style={{ y: -20 }}
+                    />
+                    
+                    {/* Minute Hand */}
+                    <motion.div
+                      className="absolute w-0.5 h-14 bg-foreground/60 rounded-full origin-bottom"
+                      animate={{ rotate: minutes * 6 }}
+                      transition={{ type: "spring", stiffness: 50 }}
+                      style={{ y: -28 }}
+                    />
+                    
+                    {/* Second Hand */}
+                    <motion.div
+                      className="absolute w-0.5 h-16 bg-primary rounded-full origin-bottom"
+                      animate={{ rotate: seconds * 6 }}
+                      transition={{ type: "tween", ease: "linear", duration: 0.1 }}
+                      style={{ y: -32 }}
+                    />
+                    
+                    {/* Center Point */}
+                    <div className="w-2 h-2 rounded-full bg-primary z-10 shadow-sm" />
+                  </div>
+
+                  <div className="text-center">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block mb-1">Standard Time</span>
+                    <div className="text-2xl font-bold tracking-tighter tabular-nums">
+                      {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block">Coordinates</span>
+                  <div className="text-sm font-medium font-mono">12.9716° N <br /> 77.5946° E</div>
+                </div>
+
+                <div className="space-y-4">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block">Currently</span>
+                  <div className="space-y-2">
+                    <div className="text-lg font-bold leading-tight uppercase tracking-tight">Designing Next-Gen AI</div>
+                    <p className="text-xs text-muted-foreground leading-relaxed italic">"Optimizing for low-latency intelligence."</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-8 relative z-10">
+                <div className="w-full h-px bg-border/50 mb-6" />
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-[10px] font-mono uppercase tracking-widest">System Online</span>
+                </div>
               </div>
             </div>
           </div>
