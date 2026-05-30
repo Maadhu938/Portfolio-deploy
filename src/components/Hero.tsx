@@ -34,43 +34,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Social & Contact Bento */}
-          <div className="md:col-span-1 space-y-6">
-            <div className="bento-card bg-muted/50 p-6 flex flex-col justify-between aspect-square group">
-                <div className="grid grid-cols-2 gap-4">
-                  <a 
-                    href="https://github.com/Maadhu938" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center justify-center aspect-square rounded-2xl bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Github size={20} />
-                  </a>
-                  <a 
-                    href="https://linkedin.com/in/maadhu-avati-525435279" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center justify-center aspect-square rounded-2xl bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Linkedin size={20} />
-                  </a>
-                  <a 
-                    href="https://instagram.com/maadhu_839" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="flex items-center justify-center aspect-square rounded-2xl bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Instagram size={20} />
-                  </a>
-                  <a 
-                    href="mailto:maadhuavati7@gmail.com" 
-                    className="flex items-center justify-center aspect-square rounded-2xl bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <Mail size={20} />
-                  </a>
-                </div>
-            </div>
-            <div className="bento-card bg-card border-border flex flex-col justify-between p-6 h-[210px]">
+          {/* Location Bento */}
+          <div className="md:col-span-1">
+            <div className="bento-card bg-card border-border flex flex-col justify-between p-6 h-full min-h-[210px]">
               <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Location</span>
               <div className="space-y-1">
                 <div className="text-xl font-bold tracking-tight">Bangalore</div>
