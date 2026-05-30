@@ -75,6 +75,9 @@ export default function SnakeGame() {
   // Controls
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(e.key)) {
+        e.preventDefault();
+      }
       switch (e.key) {
         case "ArrowUp": if (direction[1] !== 1) setDirection([0, -1]); break;
         case "ArrowDown": if (direction[1] !== -1) setDirection([0, 1]); break;
