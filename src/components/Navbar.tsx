@@ -102,8 +102,8 @@ export default function Navbar() {
            </div>
 
            <div className="mt-8 text-center space-y-2">
-              <h2 className="text-2xl font-bold tracking-tighter uppercase">Nexus Recreation</h2>
-              <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module :: Snake_System_v1</p>
+              <h2 className="text-2xl font-bold tracking-tighter uppercase">Snake Game</h2>
+              <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Interactive Session</p>
               <div className="pt-8 md:hidden">
                  <p className="text-[9px] font-mono opacity-30 uppercase tracking-widest">Swipe to steer • Avoid walls</p>
               </div>

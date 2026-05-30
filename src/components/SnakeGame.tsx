@@ -89,6 +89,25 @@ export default function SnakeGame() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [direction]);
 
+  // Prevent scrolling on mobile during touchmove
+  useEffect(() => {
+    const preventScroll = (e: TouchEvent) => {
+      if (isPlaying) {
+        e.preventDefault();
+      }
+    };
+    
+    const container = gameContainerRef.current;
+    if (container) {
+      container.addEventListener('touchmove', preventScroll, { passive: false });
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener('touchmove', preventScroll);
+      }
+    };
+  }, [isPlaying]);
+
   // Touch Controls (Simple Direction Detection)
   const touchStart = useRef<[number, number] | null>(null);
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -123,14 +142,16 @@ export default function SnakeGame() {
 
   return (
     <div 
+      ref={gameContainerRef}
       className="relative w-full h-full bg-black/20 rounded-2xl overflow-hidden flex flex-col"
+      style={{ touchAction: 'none' }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* HUD */}
       <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
         <span className="text-[10px] font-mono uppercase tracking-widest text-primary drop-shadow-md">Score: {score}</span>
-        {isGameOver && <span className="text-[10px] font-mono text-red-500 uppercase font-bold animate-pulse">Critical Fail</span>}
+        {isGameOver && <span className="text-[10px] font-mono text-red-500 uppercase font-bold animate-pulse">Game Over</span>}
       </div>
 
       {/* Game Board */}
@@ -160,16 +181,16 @@ export default function SnakeGame() {
       {(!isPlaying || isGameOver) && (
         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center space-y-4 z-20">
           <div className="text-center space-y-2">
-            <h4 className="text-xl font-bold tracking-tighter uppercase">{isGameOver ? "Unit Failed" : "Unit: Recreation"}</h4>
+            <h4 className="text-xl font-bold tracking-tighter uppercase">{isGameOver ? "Game Over" : "Snake Game"}</h4>
             <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
-              {isGameOver ? "Score saved to architecture" : "Interactive Recreation Module"}
+              {isGameOver ? `Final Score: ${score}` : "Ready to play?"}
             </p>
           </div>
           <button 
             onClick={isGameOver ? resetGame : () => setIsPlaying(true)}
             className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-bold text-xs uppercase tracking-widest hover:scale-110 transition-transform active:scale-95"
           >
-            {isGameOver ? <><RotateCcw size={16} /> Reconnect</> : <><Play size={16} /> Initialise</>}
+            {isGameOver ? <><RotateCcw size={16} /> Try Again</> : <><Play size={16} /> Start Game</>}
           </button>
         </div>
       )}
