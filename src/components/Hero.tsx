@@ -37,7 +37,6 @@ export default function Hero() {
           {/* Social & Contact Bento */}
           <div className="md:col-span-1 space-y-6">
             <div className="bento-card bg-muted/50 p-6 flex flex-col justify-between aspect-square group">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Follow / Network</span>
                 <div className="grid grid-cols-2 gap-4">
                   <a 
                     href="https://github.com/Maadhu938" 
