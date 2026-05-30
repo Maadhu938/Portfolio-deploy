@@ -3,6 +3,7 @@ import { ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram } from "./Icons";
 import Link from "next/link";
 import { projects, skills } from "@/data/projects";
+import SnakeGame from "./SnakeGame";
 
 export default function Hero() {
   const featured = projects.filter(p => p.featured).slice(0, 3);
@@ -101,25 +102,37 @@ export default function Hero() {
           </div>
 
           {/* Featured Works Index */}
-          <div className="md:col-span-2 bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
-            <div className="space-y-4">
-               <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Featured Unit</span>
-               <div className="space-y-2">
-                 <h3 className="text-3xl font-bold tracking-tight">{featured[0].title}</h3>
-                 <p className="text-muted-foreground leading-snug line-clamp-2">{featured[0].description}</p>
-               </div>
+          <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
+              <div className="space-y-4">
+                 <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Featured Unit</span>
+                 <div className="space-y-2">
+                   <h3 className="text-3xl font-bold tracking-tight">{featured[0].title}</h3>
+                   <p className="text-muted-foreground leading-snug line-clamp-2">{featured[0].description}</p>
+                 </div>
+              </div>
+              <div className="flex items-center justify-between border-t border-border pt-6 mt-6">
+                 <div className="flex -space-x-2">
+                    {featured[0].techStack.map(ts => (
+                      <div key={ts} className="w-8 h-8 rounded-full bg-muted border-2 border-card flex items-center justify-center text-[8px] font-bold overflow-hidden uppercase">
+                         {ts.charAt(0)}
+                      </div>
+                    ))}
+                 </div>
+                 <a href={featured[0].githubUrl} target="_blank" className="text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-50 transition-opacity">
+                    Analysis <ArrowUpRight size={14} />
+                 </a>
+              </div>
             </div>
-            <div className="flex items-center justify-between border-t border-border pt-6 mt-6">
-               <div className="flex -space-x-2">
-                  {featured[0].techStack.map(ts => (
-                    <div key={ts} className="w-8 h-8 rounded-full bg-muted border-2 border-card flex items-center justify-center text-[8px] font-bold overflow-hidden uppercase">
-                       {ts.charAt(0)}
-                    </div>
-                  ))}
+
+            {/* Snake Game Module */}
+            <div className="bento-card border-border p-4 flex flex-col min-h-[400px] !bg-card transition-all">
+               <div className="px-4 pt-4 pb-2">
+                 <span className="text-[10px] font-mono uppercase tracking-[0.3em] text-muted-foreground opacity-50">Unit / Recreation</span>
                </div>
-               <a href={featured[0].githubUrl} target="_blank" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-50 transition-opacity">
-                  View Repository <ArrowUpRight size={16} />
-               </a>
+               <div className="flex-1 relative">
+                 <SnakeGame />
+               </div>
             </div>
           </div>
 
