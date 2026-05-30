@@ -15,10 +15,6 @@ export default function Hero() {
           {/* Main Hero Card */}
           <div className="md:col-span-3 bento-card flex flex-col justify-between min-h-[400px] md:min-h-[450px] !bg-primary !text-primary-foreground group">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-foreground/10 text-[10px] font-mono uppercase tracking-widest border border-primary-foreground/10 !text-primary-foreground/80">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                Available for hire
-              </div>
               <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] !text-primary-foreground">
                 MAADHU <br />
                 <span className="opacity-40 italic font-serif">AVATI.</span>
