@@ -54,82 +54,54 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Detailed Info Bento */}
+          {/* Time Bento */}
           <div className="md:col-span-1">
-            <div className="bento-card bg-card border-border flex flex-col justify-between p-8 h-full min-h-[450px] relative overflow-hidden group">
-              {/* Subtle background decoration */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl transition-colors group-hover:bg-primary/10" />
-              
-              <div className="space-y-12 relative z-10">
-                <div className="flex flex-col items-center gap-6">
-                  <div className="relative w-32 h-32 rounded-full border-2 border-primary/20 flex items-center justify-center bg-muted/30">
-                    {/* Hour markings */}
-                    {[...Array(12)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-0.5 h-1.5 bg-muted-foreground/30"
-                        style={{
-                          transform: `rotate(${i * 30}deg) translateY(-54px)`,
-                        }}
-                      />
-                    ))}
-                    
-                    {/* Hour Hand */}
-                    <motion.div
-                      className="absolute w-1 h-10 bg-foreground/80 rounded-full origin-bottom"
-                      animate={{ rotate: (hours % 12) * 30 + minutes * 0.5 }}
-                      transition={{ type: "spring", stiffness: 50 }}
-                      style={{ y: -20 }}
-                    />
-                    
-                    {/* Minute Hand */}
-                    <motion.div
-                      className="absolute w-0.5 h-14 bg-foreground/60 rounded-full origin-bottom"
-                      animate={{ rotate: minutes * 6 }}
-                      transition={{ type: "spring", stiffness: 50 }}
-                      style={{ y: -28 }}
-                    />
-                    
-                    {/* Second Hand */}
-                    <motion.div
-                      className="absolute w-0.5 h-16 bg-primary rounded-full origin-bottom"
-                      animate={{ rotate: seconds * 6 }}
-                      transition={{ type: "tween", ease: "linear", duration: 0.1 }}
-                      style={{ y: -32 }}
-                    />
-                    
-                    {/* Center Point */}
-                    <div className="w-2 h-2 rounded-full bg-primary z-10 shadow-sm" />
-                  </div>
-
-                  <div className="text-center">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block mb-1">Standard Time</span>
-                    <div className="text-2xl font-bold tracking-tighter tabular-nums">
-                      {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block">Coordinates</span>
-                  <div className="text-sm font-medium font-mono">12.9716° N <br /> 77.5946° E</div>
-                </div>
-
-                <div className="space-y-4">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block">Currently</span>
-                  <div className="space-y-2">
-                    <div className="text-lg font-bold leading-tight uppercase tracking-tight">Designing Next-Gen AI</div>
-                    <p className="text-xs text-muted-foreground leading-relaxed italic">"Optimizing for low-latency intelligence."</p>
-                  </div>
-                </div>
+            <div className="bento-card bg-card border-border flex flex-col items-center justify-center p-8 h-full min-h-[450px]">
+              <div className="relative w-40 h-40 rounded-full border-2 border-primary/10 flex items-center justify-center bg-muted/20">
+                {/* Hour markings */}
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute w-0.5 h-2 bg-muted-foreground/20"
+                    style={{
+                      transform: `rotate(${i * 30}deg) translateY(-68px)`,
+                    }}
+                  />
+                ))}
+                
+                {/* Hour Hand */}
+                <motion.div
+                  className="absolute w-1.5 h-12 bg-foreground/80 rounded-full origin-bottom"
+                  animate={{ rotate: (hours % 12) * 30 + minutes * 0.5 }}
+                  transition={{ type: "spring", stiffness: 50 }}
+                  style={{ y: -24 }}
+                />
+                
+                {/* Minute Hand */}
+                <motion.div
+                  className="absolute w-1 h-16 bg-foreground/40 rounded-full origin-bottom"
+                  animate={{ rotate: minutes * 6 }}
+                  transition={{ type: "spring", stiffness: 50 }}
+                  style={{ y: -32 }}
+                />
+                
+                {/* Second Hand */}
+                <motion.div
+                  className="absolute w-0.5 h-18 bg-primary rounded-full origin-bottom"
+                  animate={{ rotate: seconds * 6 }}
+                  transition={{ type: "tween", ease: "linear", duration: 0.1 }}
+                  style={{ y: -36 }}
+                />
+                
+                {/* Center Point */}
+                <div className="w-2.5 h-2.5 rounded-full bg-primary z-10 shadow-sm" />
               </div>
 
-              <div className="pt-8 relative z-10">
-                <div className="w-full h-px bg-border/50 mb-6" />
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-[10px] font-mono uppercase tracking-widest">System Online</span>
+              <div className="mt-8 text-center">
+                <div className="text-4xl font-bold tracking-tighter tabular-nums">
+                  {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
                 </div>
+                <div className="text-[10px] font-mono opacity-30 uppercase tracking-[0.2em] mt-2">Bangalore, IN</div>
               </div>
             </div>
           </div>
@@ -137,8 +109,7 @@ export default function Hero() {
           {/* Stack & Skills Bento */}
           <div className="md:col-span-2 bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
             <div className="space-y-4">
-               <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Technical Stack</span>
-               <h3 className="text-3xl font-bold tracking-tight">Engineered for <br /> <span className="text-muted-foreground">performance.</span></h3>
+               <h3 className="text-3xl font-bold tracking-tight">Core <br /> <span className="text-muted-foreground">Expertise.</span></h3>
             </div>
             <div className="flex flex-wrap gap-2 pt-8">
               {skills.slice(0, 12).map(skill => (
@@ -153,7 +124,6 @@ export default function Hero() {
           {/* Featured Works Index */}
           <div className="md:col-span-2 bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
             <div className="space-y-4">
-               <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Featured Unit</span>
                <div className="space-y-2">
                  <h3 className="text-3xl font-bold tracking-tight">{featured[0].title}</h3>
                  <p className="text-muted-foreground leading-snug line-clamp-2">{featured[0].description}</p>
