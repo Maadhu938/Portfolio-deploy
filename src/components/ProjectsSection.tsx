@@ -1,100 +1,138 @@
 "use client";
-import { projects } from "@/data/projects";
-import { ArrowUpRight, ExternalLink } from "lucide-react";
-import { GithubIcon as Github, PlayStoreIcon as PlayStore } from "./Icons";
+
 import { motion } from "framer-motion";
+import { ArrowUpRight, Play, Store } from "lucide-react";
+import { projects } from "@/data/projects";
+import { GithubIcon as Github } from "./Icons";
+
+const cartridgeColors = [
+  "bg-[hsl(var(--surface-warm))]",
+  "bg-[hsl(var(--surface-cool))]",
+  "bg-secondary",
+];
 
 export default function ProjectsSection() {
-  const featured = projects.filter(p => p.featured);
+  const featured = projects.filter((project) => project.featured);
+  const archive = projects.filter((project) => !project.featured);
 
   return (
-    <motion.section 
-      id="projects" 
-      className="py-16 md:py-24 px-6 md:px-12 lg:px-24"
-      initial={{ opacity: 0, y: 20 }}
+    <motion.section
+      id="projects"
+      className="section-shell"
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.45 }}
     >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 px-4">
-          <div className="space-y-4">
-            <h2 className="text-[10px] font-mono uppercase tracking-[0.4em] text-muted-foreground border-l-2 border-primary pl-4">Selected Index</h2>
-            <h3 className="text-3xl md:text-5xl font-bold tracking-tighter !text-foreground uppercase">ENGINEERED <br /><span className="opacity-30 italic font-serif lowercase">Units.</span></h3>
+      <div className="section-inner">
+        <div className="mb-12 grid gap-5 md:grid-cols-[0.9fr_0.55fr] md:items-end">
+          <div>
+            <p className="eyebrow">World 01 / Projects</p>
+            <h2 className="pixel-title mt-4 text-4xl font-black uppercase leading-none tracking-tight md:text-6xl">
+              Quest cartridges
+            </h2>
           </div>
-          <p className="text-muted-foreground max-w-sm text-lg leading-relaxed italic border-t border-border pt-4">
-            Products focused on data isolation, AI logic, and modular architecture.
+          <p className="pixel-card-sm bg-card p-4 text-sm font-semibold leading-7 text-muted-foreground">
+            Each build has a real gameplay loop: learn, organize, retrieve, ship, or practice.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[300px]">
-          {featured.map((project, i) => {
-            const isWide = i === 0 || i === 3;
-            return (
-              <div 
-                key={project.title} 
-                className={`bento-card bg-card group border-border flex flex-col justify-between ${isWide ? 'lg:col-span-4' : 'lg:col-span-2'}`}
-              >
-                <div className="flex justify-between items-start">
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest leading-none">UNIT / 00{i+1}</span>
-                    <h4 className="text-2xl font-bold tracking-tight uppercase leading-none !text-foreground">{project.title}</h4>
-                  </div>
-                  <div className="flex gap-2">
-                    <a 
-                      href={project.githubUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full !bg-background border border-border hover:!bg-primary hover:!text-primary-foreground transition-all !text-foreground"
-                    >
-                      <Github size={16} />
-                    </a>
-                  </div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {featured.map((project, index) => (
+            <article
+              key={project.title}
+              className={`pixel-card flex min-h-[390px] flex-col justify-between p-5 ${cartridgeColors[index % cartridgeColors.length]} ${
+                index === 0 ? "lg:col-span-2" : ""
+              }`}
+            >
+              <div>
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <span className="pixel-badge px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em]">
+                    Cart 0{index + 1}
+                  </span>
+                  {project.status && (
+                    <span className="border-2 border-border bg-card px-3 py-1 text-[10px] font-black uppercase">
+                      {project.status}
+                    </span>
+                  )}
                 </div>
 
-                <div className="space-y-6">
-                  <p className={`!text-muted-foreground leading-snug line-clamp-3 ${isWide ? 'max-w-xl text-xl' : 'text-sm'}`}>
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex items-end justify-between">
-                    <div className="flex flex-wrap gap-2">
-                      {project.techStack.map(ts => (
-                        <span key={ts} className="text-[9px] font-mono uppercase tracking-tighter px-2 py-0.5 rounded-md !bg-muted border border-border !text-muted-foreground">
-                          {ts}
-                        </span>
-                      ))}
-                    </div>
-                    {project.playStoreUrl && (
-                      <a 
-                        href={project.playStoreUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="p-2 rounded-full !bg-background border border-border hover:!bg-primary hover:!text-primary-foreground transition-all !text-foreground"
-                        aria-label="View on Play Store"
-                      >
-                        <PlayStore size={18} />
-                      </a>
-                    )}
-                  </div>
+                <h3 className="mt-8 text-3xl font-black uppercase leading-tight tracking-tight md:text-4xl">
+                  {project.title}
+                </h3>
+                <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-foreground/75 md:text-base">
+                  {project.description}
+                </p>
+              </div>
+
+              <div className="mt-8">
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <span key={tech} className="border-2 border-border bg-card px-2.5 py-1 text-[10px] font-black uppercase">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3 border-t-2 border-border pt-5">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="pixel-button pixel-button-alt px-4 py-2 text-xs font-black uppercase"
+                  >
+                    <Github size={16} />
+                    Repo
+                  </a>
+                  {project.playStoreUrl && (
+                    <a
+                      href={project.playStoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pixel-button bg-card px-3 py-2 text-foreground"
+                      aria-label="Open Play Store listing"
+                    >
+                      <Store size={16} />
+                    </a>
+                  )}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="pixel-button bg-card px-3 py-2 text-foreground"
+                      aria-label="Open live demo"
+                    >
+                      <Play size={16} />
+                    </a>
+                  )}
                 </div>
               </div>
-            );
-          })}
-          
-          {/* More Projects CTA Card */}
-          <div className="lg:col-span-2 bento-card !bg-primary !text-primary-foreground flex flex-col items-center justify-center text-center space-y-6 group cursor-pointer overflow-hidden">
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 to-transparent scale-150 group-hover:scale-100 transition-transform duration-1000 opacity-20" />
-             <span className="text-[10px] font-mono uppercase tracking-[0.4em] opacity-80">Open Source</span>
-             <h4 className="text-2xl font-bold tracking-tighter uppercase relative z-10 !text-primary-foreground">Archive & <br /> Repositories</h4>
-             <a 
-               href="https://github.com/Maadhu938" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               className="p-4 rounded-full bg-primary-foreground !text-primary relative z-10 hover:scale-110 transition-transform duration-500"
-             >
-               <ArrowUpRight size={24} />
-             </a>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 pixel-card bg-card p-5">
+          <div className="mb-5 flex items-center justify-between border-b-2 border-border pb-4">
+            <h3 className="text-lg font-black uppercase">Bonus stages</h3>
+            <span className="text-xs font-black uppercase text-muted-foreground">{archive.length} repos</span>
+          </div>
+          <div className="grid gap-3 md:grid-cols-2">
+            {archive.map((project) => (
+              <a
+                key={project.title}
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-start justify-between gap-4 border-2 border-border bg-background p-4 transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                <div>
+                  <h4 className="font-black uppercase">{project.title}</h4>
+                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 opacity-75">{project.description}</p>
+                </div>
+                <ArrowUpRight size={18} className="shrink-0" />
+              </a>
+            ))}
           </div>
         </div>
       </div>

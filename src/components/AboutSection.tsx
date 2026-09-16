@@ -1,36 +1,52 @@
 "use client";
+
 import { motion } from "framer-motion";
+
+const logs = [
+  ["01", "AI with a job", "RAG and embeddings are for retrieval, context, and workflow speed, not novelty."],
+  ["02", "Mobile-first instincts", "Flutter and Capacitor help ideas reach real devices quickly."],
+  ["03", "Clean systems", "I care about user isolation, API boundaries, and code that stays understandable."],
+  ["04", "Polish loop", "Ship, test, notice friction, then sand the rough edge until it feels obvious."],
+];
 
 export default function AboutSection() {
   return (
-    <motion.section 
-      id="about" 
-      className="py-16 md:py-24 px-6 md:px-12 lg:px-24"
-      initial={{ opacity: 0, y: 20 }}
+    <motion.section
+      id="about"
+      className="section-shell"
+      initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.45 }}
     >
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 gap-6">
-          {/* Visual/Quote Bento - Now more prominent since philosophy/principles are removed */}
-          <div className="bento-card border-border flex items-center justify-center p-8 py-20 md:p-12 md:py-32 overflow-hidden group bg-muted/30">
-             <div className="relative text-center space-y-6">
-                <div className="text-4xl md:text-8xl lg:text-9xl font-serif italic opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-1000 leading-none">
-                  Maadhu <br /> Avati.
+      <div className="section-inner">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <div className="pixel-card bg-card p-6 md:p-8">
+            <p className="eyebrow">World 02 / About</p>
+            <h2 className="pixel-title mt-5 text-4xl font-black uppercase leading-none tracking-tight md:text-6xl">
+              Builder log
+            </h2>
+            <p className="mt-7 text-sm font-semibold leading-8 text-muted-foreground md:text-base">
+              I am Maadhu, a full-stack engineer from Bangalore. I like building practical tools:
+              learning apps, academic assistants, AI notebooks, and systems where the interface and
+              backend both carry their weight.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {logs.map(([number, title, text]) => (
+              <article key={number} className="pixel-card-sm bg-card p-5">
+                <div className="flex items-center justify-between border-b-2 border-border pb-3">
+                  <span className="text-2xl font-black">{number}</span>
+                  <span className="h-4 w-4 bg-accent shadow-[4px_0_0_hsl(var(--primary)),8px_0_0_hsl(var(--secondary))]" />
                 </div>
-                <div className="flex flex-col items-center justify-center gap-4">
-                   <p className="text-xs md:text-sm font-mono uppercase tracking-[0.8em] opacity-60">Full-Stack Engineer — Bangalore, India</p>
-                   <div className="w-12 h-[1px] bg-primary/20" />
-                   <p className="max-w-xl text-lg md:text-xl text-muted-foreground leading-relaxed italic">
-                     "Building high-performance AI systems and refined digital interfaces with a focus on first principles and architectural integrity."
-                   </p>
-                </div>
-             </div>
+                <h3 className="mt-5 text-xl font-black uppercase">{title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-7 text-muted-foreground">{text}</p>
+              </article>
+            ))}
           </div>
         </div>
       </div>
     </motion.section>
   );
 }
-

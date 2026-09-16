@@ -1,83 +1,84 @@
 "use client";
-import { useState, useEffect } from "react";
-import { useTheme } from "next-themes";
-import { Moon, Sun, Menu, X, Terminal } from "lucide-react";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
+import { Menu, Moon, Sun, Terminal, X } from "lucide-react";
 import SnakeGame from "./SnakeGame";
+
+const navItems = ["Projects", "About", "Skills", "Contact"];
 
 export default function Navbar() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [showGame, setShowGame] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const id = window.setTimeout(() => setMounted(true), 0);
+    return () => window.clearTimeout(id);
+  }, []);
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 md:py-6 pointer-events-none">
-        <div className="max-w-[1400px] mx-auto flex items-center justify-between pointer-events-auto">
-          
-          {/* Logo / Terminal - Trigger Game */}
-          <button 
+      <nav className="fixed inset-x-0 top-0 z-50 px-4 py-4 pointer-events-none md:px-8">
+        <div className="section-inner flex items-center justify-between gap-3 pointer-events-auto">
+          <button
             onClick={() => setShowGame(true)}
-            className="bento-card !p-3 !rounded-2xl flex items-center gap-3 group !bg-background/80 backdrop-blur-md cursor-pointer border-primary/20 hover:border-primary transition-all"
+            className="pixel-button pixel-button-alt px-3 py-2 text-left"
+            aria-label="Open snake mini game"
           >
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center !text-primary-foreground group-hover:rotate-12 transition-transform">
-               <Terminal size={18} />
-            </div>
-            <span className="font-bold tracking-tighter text-lg uppercase hidden sm:block !text-foreground">M.AVATI</span>
+            <Terminal size={18} />
+            <span className="hidden text-xs font-black uppercase leading-tight sm:block">
+              M.AVATI
+              <span className="block text-[9px] font-bold opacity-75">press start</span>
+            </span>
           </button>
 
-        {/* Links Bento */}
-        <div className="hidden md:flex bento-card !p-2 !rounded-2xl gap-1 !bg-background/80 backdrop-blur-md">
-          {['Projects', 'About', 'Contact'].map((item) => (
-            <Link 
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="px-6 py-2 rounded-xl text-sm font-medium hover:bg-muted transition-colors opacity-70 hover:opacity-100 !text-foreground"
+          <div className="hidden border-[3px] border-border bg-card p-1 shadow-[5px_5px_0_hsl(var(--border))] md:flex">
+            {navItems.map((item) => (
+              <Link
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="px-4 py-2 text-xs font-black uppercase tracking-[0.14em] transition-colors hover:bg-primary hover:text-primary-foreground"
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="pixel-button bg-card p-3 text-foreground"
+              aria-label="Toggle theme"
             >
-              {item}
+              {mounted && (theme === "dark" ? <Sun size={18} /> : <Moon size={18} />)}
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="pixel-button bg-card p-3 text-foreground md:hidden"
+              aria-label="Open navigation menu"
+            >
+              {isOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+
+            <Link href="#contact" className="pixel-button hidden px-4 py-3 text-xs font-black uppercase sm:inline-flex">
+              Hire / Collab
             </Link>
-          ))}
+          </div>
         </div>
+      </nav>
 
-        {/* Actions Bento */}
-        <div className="flex items-center gap-3">
-          <button 
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="bento-card !p-3 !rounded-2xl hover:bg-muted transition-colors !bg-background/80 backdrop-blur-md shadow-sm"
-            aria-label="Toggle Theme"
-          >
-            {mounted && (theme === 'dark' ? <Sun size={20} className="!text-foreground" /> : <Moon size={20} className="!text-foreground" />)}
-          </button>
-          
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden bento-card !p-3 !rounded-2xl bg-background/80 backdrop-blur-md shadow-sm"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-
-          <Link 
-            href="#contact"
-            className="hidden sm:flex bento-card !bg-primary !p-3 !px-6 !rounded-2xl !text-primary-foreground font-bold text-sm tracking-widest uppercase items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg shadow-primary/20"
-          >
-            Connect
-          </Link>
-        </div>
-      </div>
-    </nav>
-
-      {/* Mobile Menu */}
       {isOpen && (
-        <div className="absolute top-24 left-6 right-6 bento-card bg-background/95 backdrop-blur-2xl p-6 flex flex-col gap-4 pointer-events-auto md:hidden animate-in fade-in slide-in-from-top-4 shadow-2xl">
-          {['Projects', 'About', 'Contact'].map((item) => (
-            <Link 
+        <div className="fixed left-4 right-4 top-24 z-50 pixel-card bg-card p-3 md:hidden">
+          {navItems.map((item) => (
+            <Link
               key={item}
               href={`#${item.toLowerCase()}`}
               onClick={() => setIsOpen(false)}
-              className="text-2xl font-bold tracking-tighter uppercase px-4 py-2 hover:bg-muted rounded-xl transition-colors"
+              className="block border-b-2 border-border px-4 py-4 text-lg font-black uppercase last:border-b-0 hover:bg-primary hover:text-primary-foreground"
             >
               {item}
             </Link>
@@ -85,32 +86,31 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Fullscreen Game Overlay */}
       {showGame && (
-        <div className="fixed inset-0 z-[100] bg-background flex flex-col items-center justify-center p-6 animate-in fade-in zoom-in duration-300">
-           <div className="absolute top-6 right-6 z-[110]">
-              <button 
-                onClick={() => setShowGame(false)}
-                className="bento-card !p-4 !rounded-2xl bg-muted hover:bg-primary hover:text-primary-foreground transition-all"
-              >
-                <X size={24} />
-              </button>
-           </div>
-           
-           <div className="w-full max-w-md aspect-square bg-card border-2 border-primary/20 rounded-[2rem] p-4 shadow-2xl relative overflow-hidden">
-             <SnakeGame />
-           </div>
+        <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background p-6">
+          <button
+            onClick={() => setShowGame(false)}
+            className="pixel-button absolute right-6 top-6 p-4"
+            aria-label="Close game"
+          >
+            <X size={24} />
+          </button>
 
-           <div className="mt-8 text-center space-y-2">
-              <h2 className="text-2xl font-bold tracking-tighter uppercase">Snake Game</h2>
-              <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Interactive Session</p>
-              <div className="pt-8 md:hidden">
-                 <p className="text-[9px] font-mono opacity-30 uppercase tracking-widest">Swipe to steer • Avoid walls</p>
-              </div>
-           </div>
+          <div className="relative aspect-square w-full max-w-md overflow-hidden pixel-card bg-card p-4">
+            <SnakeGame />
+          </div>
+
+          <div className="mt-8 space-y-2 text-center">
+            <h2 className="pixel-title text-3xl font-black uppercase">Snake.exe</h2>
+            <p className="eyebrow">hidden mini game</p>
+            <div className="pt-6 md:hidden">
+              <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
+                Swipe to steer - avoid walls
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </>
   );
 }
-

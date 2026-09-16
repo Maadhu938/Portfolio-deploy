@@ -1,149 +1,191 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Mail } from "lucide-react";
-import { GithubIcon as Github, LinkedinIcon as Linkedin, InstagramIcon as Instagram } from "./Icons";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { projects, skills } from "@/data/projects";
+import { GithubIcon as Github } from "./Icons";
+
+const sprite = [
+  "000111111000",
+  "001222222100",
+  "012222222210",
+  "012331133210",
+  "012333333210",
+  "001222222100",
+  "004444444400",
+  "044555555440",
+  "045555555540",
+  "005506605500",
+  "007700007700",
+  "077000000770",
+];
+
+const spriteColors: Record<string, string> = {
+  "0": "transparent",
+  "1": "hsl(var(--border))",
+  "2": "hsl(var(--surface-warm))",
+  "3": "hsl(var(--foreground))",
+  "4": "hsl(var(--primary))",
+  "5": "hsl(var(--secondary))",
+  "6": "hsl(var(--accent))",
+  "7": "hsl(var(--muted-foreground))",
+};
+
+const stats = [
+  ["LVL", "08", "projects shipped"],
+  ["INT", "13", "core tools"],
+  ["EXP", "AI", "rag + mobile"],
+];
+
+function PixelAvatar() {
+  return (
+    <div className="mx-auto grid w-full max-w-[288px] grid-cols-12 gap-1 p-4 pixel-tile" aria-label="Pixel avatar">
+      {sprite.flatMap((row, rowIndex) =>
+        row.split("").map((cell, columnIndex) => (
+          <span
+            key={`${rowIndex}-${columnIndex}`}
+            className="aspect-square"
+            style={{ backgroundColor: spriteColors[cell] }}
+          />
+        )),
+      )}
+    </div>
+  );
+}
 
 export default function Hero() {
-  const featured = projects.filter(p => p.featured).slice(0, 3);
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState("");
+  const featuredProject = projects.find((project) => project.featured) ?? projects[0];
+  const featuredSkills = skills.slice(0, 7);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(timer);
+    const updateTime = () => {
+      setTime(
+        new Intl.DateTimeFormat("en-IN", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date()),
+      );
+    };
+
+    updateTime();
+    const timer = window.setInterval(updateTime, 1000);
+    return () => window.clearInterval(timer);
   }, []);
 
-  // Calculate rotations for Bangalore time
-  const getBangaloreTime = () => {
-    return new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}));
-  };
-
-  const bentoTime = getBangaloreTime();
-  const seconds = bentoTime.getSeconds();
-  const minutes = bentoTime.getMinutes();
-  const hours = bentoTime.getHours();
-
   return (
-    <section className="pt-24 pb-16 md:pt-32 md:pb-24 px-6 md:px-12 lg:px-24">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          
-          {/* Main Hero Card */}
-          <div className="md:col-span-3 bento-card flex flex-col justify-between min-h-[400px] md:min-h-[450px] !bg-primary !text-primary-foreground group">
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] !text-primary-foreground">
-                MAADHU <br />
-                <span className="opacity-40 italic font-serif">AVATI.</span>
-              </h1>
-            </div>
-            
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-12">
-              <p className="text-xl md:text-2xl opacity-80 max-w-lg leading-tight !text-primary-foreground">
-                Full-stack engineer building high-performance <span className="font-medium underline decoration-primary-foreground/30 underline-offset-4">AI systems</span> and refined digital interfaces.
-              </p>
-              <Link 
-                href="#projects" 
-                className="w-16 h-16 rounded-full bg-primary-foreground !text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-xl"
-              >
-                <ArrowUpRight size={28} />
+    <section className="section-shell relative min-h-screen overflow-hidden pt-28 md:pt-36">
+      <div className="absolute inset-x-0 top-0 h-[620px] opacity-40 soft-grid" />
+
+      <div className="section-inner relative grid gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+          className="pixel-card flex min-h-[650px] flex-col justify-between bg-card p-5 md:p-8"
+        >
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="pixel-badge px-3 py-1.5 text-xs font-black uppercase">Save Slot 01</span>
+            <span className="flex items-center gap-2 border-2 border-border bg-background px-3 py-1.5 text-xs font-bold">
+              <MapPin size={14} />
+              Bangalore, IN
+            </span>
+          </div>
+
+          <div className="py-12 md:py-16">
+            <p className="eyebrow">Full-stack engineer / AI builder</p>
+            <h1 className="pixel-title mt-5 max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-tight md:text-7xl lg:text-8xl">
+              Maadhu Avati
+            </h1>
+            <p className="mt-7 max-w-2xl text-base font-semibold leading-8 text-muted-foreground md:text-lg">
+              I build web, mobile, and AI systems like playable tools: clear states, fast feedback,
+              sturdy logic, and interfaces that feel made by a person.
+            </p>
+
+            <div className="mt-9 flex flex-wrap gap-4">
+              <Link href="#projects" className="pixel-button px-5 py-3 text-sm font-black uppercase">
+                Start quest <ArrowDown size={17} />
               </Link>
+              <a href="mailto:maadhuavati7@gmail.com" className="pixel-button pixel-button-alt px-5 py-3 text-sm font-black uppercase">
+                <Mail size={17} />
+                Send mail
+              </a>
+              <a
+                href="https://github.com/Maadhu938"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-button bg-card px-4 py-3 text-foreground"
+                aria-label="Open GitHub profile"
+              >
+                <Github size={18} />
+              </a>
             </div>
           </div>
 
-          {/* Time Bento */}
-          <div className="md:col-span-1">
-            <div className="bento-card bg-card border-border flex flex-col items-center justify-center p-8 h-full min-h-[450px]">
-              <div className="relative w-40 h-40 rounded-full border-2 border-primary/10 flex items-center justify-center bg-muted/20">
-                {/* Hour markings */}
-                {[...Array(12)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-0.5 h-2 bg-muted-foreground/20"
-                    style={{
-                      transform: `rotate(${i * 30}deg) translateY(-68px)`,
-                    }}
-                  />
-                ))}
-                
-                {/* Hour Hand */}
-                <motion.div
-                  className="absolute w-1.5 h-12 bg-foreground/80 rounded-full origin-bottom"
-                  animate={{ rotate: (hours % 12) * 30 + minutes * 0.5 }}
-                  transition={{ type: "spring", stiffness: 50 }}
-                  style={{ y: -24 }}
-                />
-                
-                {/* Minute Hand */}
-                <motion.div
-                  className="absolute w-1 h-16 bg-foreground/40 rounded-full origin-bottom"
-                  animate={{ rotate: minutes * 6 }}
-                  transition={{ type: "spring", stiffness: 50 }}
-                  style={{ y: -32 }}
-                />
-                
-                {/* Second Hand */}
-                <motion.div
-                  className="absolute w-0.5 h-18 bg-primary rounded-full origin-bottom"
-                  animate={{ rotate: seconds * 6 }}
-                  transition={{ type: "tween", ease: "linear", duration: 0.1 }}
-                  style={{ y: -36 }}
-                />
-                
-                {/* Center Point */}
-                <div className="w-2.5 h-2.5 rounded-full bg-primary z-10 shadow-sm" />
+          <div className="grid gap-3 border-t-2 border-border pt-5 sm:grid-cols-3">
+            {stats.map(([label, value, hint]) => (
+              <div key={label} className="border-2 border-border bg-background p-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
+                <p className="mt-2 text-4xl font-black leading-none">{value}</p>
+                <p className="mt-2 text-xs font-bold text-muted-foreground">{hint}</p>
               </div>
+            ))}
+          </div>
+        </motion.div>
 
-              <div className="mt-8 text-center">
-                <div className="text-4xl font-bold tracking-tighter tabular-nums">
-                  {hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}
-                </div>
-                <div className="text-[10px] font-mono opacity-30 uppercase tracking-[0.2em] mt-2">Bangalore, IN</div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 }}
+          className="grid gap-5"
+        >
+          <div className="pixel-card pixel-screen p-5">
+            <div className="flex items-center justify-between border-b-2 border-border pb-3">
+              <p className="text-xs font-black uppercase tracking-[0.2em]">Player Sprite</p>
+              <p className="text-xs font-black">{time || "--:--"} IST</p>
+            </div>
+            <PixelAvatar />
+            <div className="grid grid-cols-3 gap-2 border-t-2 border-border pt-3 text-center text-[10px] font-black uppercase tracking-[0.14em]">
+              <span>React</span>
+              <span>Flutter</span>
+              <span>RAG</span>
             </div>
           </div>
 
-          {/* Stack & Skills Bento */}
-          <div className="md:col-span-2 bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
-            <div className="space-y-4">
-               <h3 className="text-3xl font-bold tracking-tight">Core <br /> <span className="text-muted-foreground">Expertise.</span></h3>
+          <div className="pixel-card-sm bg-[hsl(var(--surface-warm))] p-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="eyebrow text-foreground/70">Current mission</p>
+                <h2 className="mt-3 text-2xl font-black uppercase tracking-tight">{featuredProject.title}</h2>
+              </div>
+              <a
+                href={featuredProject.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pixel-button pixel-button-alt h-11 w-11 shrink-0"
+                aria-label={`Open ${featuredProject.title} repository`}
+              >
+                <ArrowUpRight size={18} />
+              </a>
             </div>
-            <div className="flex flex-wrap gap-2 pt-8">
-              {skills.slice(0, 12).map(skill => (
-                <span key={skill.name} className="px-3 py-1.5 rounded-xl bg-muted/50 text-sm font-medium border border-border/50">
+            <p className="mt-4 text-sm font-semibold leading-7 text-foreground/75">{featuredProject.description}</p>
+          </div>
+
+          <div className="pixel-card-sm bg-card p-5">
+            <p className="eyebrow">Inventory</p>
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {featuredSkills.map((skill) => (
+                <span key={skill.name} className="border-2 border-border bg-muted px-3 py-2 text-xs font-black uppercase">
                   {skill.name}
                 </span>
               ))}
-              <span className="px-3 py-1.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium">and more...</span>
             </div>
           </div>
-
-          {/* Featured Works Index */}
-          <div className="md:col-span-2 bento-card bg-card border-border p-8 flex flex-col justify-between min-h-[400px]">
-            <div className="space-y-4">
-               <div className="space-y-2">
-                 <h3 className="text-3xl font-bold tracking-tight">{featured[0].title}</h3>
-                 <p className="text-muted-foreground leading-snug line-clamp-2">{featured[0].description}</p>
-               </div>
-            </div>
-            <div className="flex items-center justify-between border-t border-border pt-6 mt-6">
-               <div className="flex -space-x-2">
-                  {featured[0].techStack.map(ts => (
-                    <div key={ts} className="w-8 h-8 rounded-full bg-muted border-2 border-card flex items-center justify-center text-[8px] font-bold overflow-hidden uppercase">
-                       {ts.charAt(0)}
-                    </div>
-                  ))}
-               </div>
-               <a href={featured[0].githubUrl} target="_blank" className="text-sm font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-50 transition-opacity">
-                  View Repository <ArrowUpRight size={16} />
-               </a>
-            </div>
-          </div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );
