@@ -3,14 +3,6 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/projects";
 
-const categoryTone: Record<string, string> = {
-  Frontend: "bg-[hsl(var(--surface-cool))]",
-  Mobile: "bg-secondary",
-  Backend: "bg-[hsl(var(--surface-warm))]",
-  Database: "bg-card",
-  "AI/ML": "bg-primary text-primary-foreground",
-};
-
 export default function SkillsSection() {
   const categories = [...new Set(skills.map((skill) => skill.category))];
 
@@ -41,15 +33,15 @@ export default function SkillsSection() {
             const categorySkills = skills.filter((skill) => skill.category === category);
 
             return (
-              <article key={category} className={`pixel-card-sm p-5 ${categoryTone[category]}`}>
-                <div className="flex items-center justify-between border-b-2 border-current pb-3">
-                  <span className="text-xs font-black uppercase tracking-[0.2em]">Slot {index + 1}</span>
-                  <span className="text-xs font-black">{categorySkills.length}</span>
+              <article key={category} className="pixel-card-sm bg-card text-foreground p-5">
+                <div className="flex items-center justify-between border-b-2 border-border pb-3">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-foreground">Slot {index + 1}</span>
+                  <span className="text-xs font-black text-foreground">{categorySkills.length}</span>
                 </div>
-                <h3 className="mt-5 text-xl font-black uppercase">{category}</h3>
+                <h3 className="mt-5 text-xl font-black uppercase text-foreground">{category}</h3>
                 <div className="mt-5 grid gap-2">
                   {categorySkills.map((skill) => (
-                    <span key={skill.name} className="border-2 border-current bg-background/70 px-3 py-2 text-xs font-black uppercase text-foreground">
+                    <span key={skill.name} className="border-2 border-border bg-background/70 px-3 py-2 text-xs font-black uppercase text-foreground">
                       {skill.name}
                     </span>
                   ))}
