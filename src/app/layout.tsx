@@ -23,6 +23,15 @@ export const metadata: Metadata = {
   },
   description:
     "Full-stack developer building web and mobile applications with React, Capacitor, Flask, and PostgreSQL. Specializing in RAG systems and AI-powered apps.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+  },
   keywords: [
     "Maadhu Avati",
     "Full-Stack Developer",
