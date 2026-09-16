@@ -1,28 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Fira_Code, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import { ThemeProvider } from "@/components/ThemeProvider";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  variable: "--font-fira-code",
-  display: "swap",
-});
-
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-instrument-serif",
-  display: "swap",
-  style: "italic",
-});
 
 const siteUrl = "https://maadhuavati.in";
 
@@ -31,8 +10,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+    { media: "(prefers-color-scheme: light)", color: "#f8f6f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#0d111a" },
   ],
 };
 
@@ -113,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${firaCode.variable} ${instrumentSerif.variable} antialiased selection:bg-fg selection:text-bg`}>
+      <body className="antialiased selection:bg-primary selection:text-primary-foreground">
         <ThemeProvider attribute="class" defaultTheme="dark">
             <JsonLd />
             <div className="fixed inset-0 pointer-events-none noise overflow-hidden" />

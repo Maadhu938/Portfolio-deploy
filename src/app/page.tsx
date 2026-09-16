@@ -23,17 +23,13 @@ const ContactSection = dynamic(() => import("@/components/ContactSection"), {
 export default function Home() {
   return (
     <main className="relative overflow-x-hidden selection:bg-primary selection:text-primary-foreground">
-      <div className="noise" />
       <Navbar />
-      <div className="space-y-0">
-        <Hero />
-        <ProjectsSection />
-        <AboutSection />
-        <SkillsSection />
-        <ContactSection />
-      </div>
+      <Hero />
+      <ProjectsSection />
+      <AboutSection />
+      <SkillsSection />
+      <ContactSection />
       <Footer />
     </main>
   );
 }
-

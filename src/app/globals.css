@@ -19,9 +19,9 @@
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: 1.5rem;
-  --radius-md: 1rem;
-  --radius-sm: 0.5rem;
+  --radius-lg: 0rem;
+  --radius-md: 0rem;
+  --radius-sm: 0rem;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-mono: var(--font-fira-code), ui-monospace, SFMono-Regular;
@@ -31,49 +31,56 @@
 }
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  --primary: 240 5.9% 10%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
+  --font-inter: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-fira-code: "Fira Code", "Cascadia Code", "SFMono-Regular", Consolas, monospace;
+  --font-instrument-serif: Georgia, "Times New Roman", serif;
+  --background: 47 64% 92%;
+  --foreground: 224 36% 10%;
+  --card: 48 90% 96%;
+  --card-foreground: 224 36% 10%;
+  --popover: 48 90% 96%;
+  --popover-foreground: 224 36% 10%;
+  --primary: 211 84% 36%;
+  --primary-foreground: 48 90% 96%;
+  --secondary: 161 42% 47%;
+  --secondary-foreground: 224 36% 10%;
+  --muted: 43 45% 84%;
+  --muted-foreground: 224 16% 36%;
+  --accent: 7 84% 57%;
+  --accent-foreground: 48 90% 96%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 240 5.9% 10%;
+  --border: 224 36% 10%;
+  --input: 224 36% 10%;
+  --ring: 211 84% 36%;
   --icon-filter: none;
+  --surface-warm: 38 93% 71%;
+  --surface-cool: 197 66% 78%;
 }
 
 .dark {
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 0 0% 98%;
-  --primary-foreground: 240 5.9% 10%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --background: 222 42% 8%;
+  --foreground: 48 90% 92%;
+  --card: 222 36% 13%;
+  --card-foreground: 48 90% 92%;
+  --popover: 222 36% 13%;
+  --popover-foreground: 48 90% 92%;
+  --primary: 196 95% 57%;
+  --primary-foreground: 222 42% 8%;
+  --secondary: 150 62% 52%;
+  --secondary-foreground: 222 42% 8%;
+  --muted: 224 28% 20%;
+  --muted-foreground: 45 30% 72%;
+  --accent: 35 96% 56%;
+  --accent-foreground: 222 42% 8%;
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --border: 48 90% 92%;
+  --input: 48 90% 92%;
+  --ring: 196 95% 57%;
   --icon-filter: brightness(0) invert(1);
+  --surface-warm: 31 78% 20%;
+  --surface-cool: 203 66% 20%;
 }
 
 @layer base {
@@ -82,7 +89,12 @@
   }
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground;
-    font-family: var(--font-inter), sans-serif;
+    font-family: var(--font-fira-code), ui-monospace, monospace;
+    background-image:
+      linear-gradient(90deg, hsl(var(--border) / 0.08) 1px, transparent 1px),
+      linear-gradient(hsl(var(--border) / 0.08) 1px, transparent 1px),
+      linear-gradient(135deg, hsl(var(--background)), hsl(var(--surface-cool) / 0.55));
+    background-size: 18px 18px, 18px 18px, 100% 100%;
   }
 }
 
@@ -94,7 +106,8 @@
 }
 
 .bento-card {
-  @apply relative overflow-hidden rounded-3xl border p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 active:scale-[0.98];
+  @apply relative overflow-hidden rounded-none border-2 p-8 transition-all duration-200 active:translate-x-1 active:translate-y-1;
+  box-shadow: 8px 8px 0 hsl(var(--border));
 }
 
 .bento-card:not([class*='bg-']) {
@@ -102,7 +115,7 @@
 }
 
 .glass {
-  @apply bg-background/40 backdrop-blur-xl border-white/10;
+  @apply bg-background/75 backdrop-blur-xl border-border/70;
 }
 
 .noise {
@@ -110,8 +123,115 @@
   inset: 0;
   z-index: 5;
   pointer-events: none;
-  opacity: 0.05;
+  opacity: 0.035;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+.section-shell {
+  @apply px-5 py-16 md:px-10 md:py-24 lg:px-16;
+}
+
+.section-inner {
+  @apply mx-auto max-w-[1180px];
+}
+
+.eyebrow {
+  @apply font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground;
+}
+
+.soft-grid {
+  background-image:
+    linear-gradient(hsl(var(--border) / 0.45) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.45) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.pixel-card {
+  position: relative;
+  border: 3px solid hsl(var(--border));
+  border-radius: 0;
+  background: hsl(var(--card));
+  box-shadow: 8px 8px 0 hsl(var(--border));
+}
+
+.pixel-card-sm {
+  border: 2px solid hsl(var(--border));
+  border-radius: 0;
+  background: hsl(var(--card));
+  box-shadow: 5px 5px 0 hsl(var(--border));
+}
+
+.pixel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 3px solid hsl(var(--border));
+  border-radius: 0;
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+  box-shadow: 5px 5px 0 hsl(var(--border));
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.pixel-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 hsl(var(--border));
+}
+
+.pixel-button:active {
+  transform: translate(5px, 5px);
+  box-shadow: 0 0 0 hsl(var(--border));
+}
+
+.pixel-button-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 2px solid hsl(var(--border));
+  border-radius: 0;
+  box-shadow: 3px 3px 0 hsl(var(--border));
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.pixel-button-sm:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 hsl(var(--border));
+}
+
+.pixel-button-sm:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 hsl(var(--border));
+}
+
+.pixel-button-alt {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.pixel-badge {
+  border: 2px solid hsl(var(--border));
+  background: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+  box-shadow: 3px 3px 0 hsl(var(--border));
+}
+
+.pixel-screen {
+  background:
+    linear-gradient(hsl(var(--foreground) / 0.05) 50%, transparent 50%),
+    radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.18), transparent 30%),
+    hsl(var(--card));
+  background-size: 100% 6px, 100% 100%, 100% 100%;
+}
+
+.pixel-title {
+  text-shadow: 4px 4px 0 hsl(var(--accent) / 0.75);
+}
+
+.pixel-tile {
+  image-rendering: pixelated;
 }
 
 @keyframes float {
