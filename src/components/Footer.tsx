@@ -6,13 +6,15 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="px-5 pb-10 md:px-10 lg:px-16">
-      <div className="section-inner border-t-2 border-border pt-8">
-        <div className="pixel-card bg-card p-6">
-          <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <footer className="px-3 pb-8 sm:px-4 sm:pb-12 md:px-8">
+      <div className="section-inner">
+        <div className="clay-card">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-black uppercase tracking-tight">Maadhu Avati</p>
-              <p className="pt-1 text-xs font-bold text-muted-foreground">Full-stack engineer in Bangalore, India.</p>
+              <p className="font-display text-lg font-bold tracking-tight">Maadhu Avati</p>
+              <p className="pt-1 text-sm font-medium text-muted-foreground">
+                Full-stack engineer in Bangalore, India.
+              </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -20,21 +22,26 @@ export default function Footer() {
                 href="https://github.com/Maadhu938"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pixel-button-sm bg-background px-4 py-2 text-xs font-black uppercase text-foreground"
+                className="clay-btn px-5 py-3 text-xs font-semibold uppercase"
               >
                 Source code
               </a>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="pixel-button-sm bg-primary px-4 py-2 text-xs font-black uppercase text-primary-foreground"
+                className="clay-btn clay-coral clay-btn-colored px-5 py-3 text-xs font-bold uppercase"
               >
-                Back to top <ArrowUp size={15} />
+                Back to top <ArrowUp size={16} className="text-current" />
               </button>
             </div>
           </div>
 
-          <p className="mt-6 border-t-2 border-border pt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-            Copyright {currentYear} Maadhu Avati. Built with Next.js.
+          <p
+            className="mt-6 pt-4 text-[11px] font-medium uppercase tracking-[0.16em] text-muted-foreground"
+            style={{
+              borderTop: "1px solid color-mix(in srgb, var(--muted) 20%, transparent)",
+            }}
+          >
+            © {currentYear} Maadhu Avati. Built with Next.js.
           </p>
         </div>
       </div>

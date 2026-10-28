@@ -143,19 +143,19 @@ export default function SnakeGame() {
   return (
     <div 
       ref={gameContainerRef}
-      className="relative w-full h-full bg-black/20 rounded-2xl overflow-hidden flex flex-col"
-      style={{ touchAction: 'none' }}
+      className="relative w-full h-full overflow-hidden flex flex-col"
+      style={{ touchAction: 'none', borderRadius: "20px", background: "var(--surface)" }}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* HUD */}
       <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-10 pointer-events-none">
-        <span className="text-[10px] font-mono uppercase tracking-widest text-primary drop-shadow-md">Score: {score}</span>
-        {isGameOver && <span className="text-[10px] font-mono text-red-500 uppercase font-bold animate-pulse">Game Over</span>}
+        <span className="text-xs font-bold uppercase tracking-widest text-foreground">Score: {score}</span>
+        {isGameOver && <span className="text-xs font-bold uppercase text-red-500 animate-pulse">Game Over</span>}
       </div>
 
       {/* Game Board */}
-      <div className="flex-1 grid grid-cols-15 grid-rows-15 p-1 gap-px bg-white/5 border border-white/10 m-4 rounded-xl shadow-inner">
+      <div className="flex-1 grid p-2 gap-px m-4" style={{ gridTemplateColumns: `repeat(${GRID_SIZE}, 1fr)`, gridTemplateRows: `repeat(${GRID_SIZE}, 1fr)`, borderRadius: "14px", background: "color-mix(in srgb, var(--muted) 10%, transparent)" }}>
         {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => {
           const x = i % GRID_SIZE;
           const y = Math.floor(i / GRID_SIZE);
@@ -166,12 +166,12 @@ export default function SnakeGame() {
           return (
             <div 
               key={i} 
-              className={`rounded-[2px] transition-all duration-200 ${
-                isHead ? "bg-primary scale-110 shadow-[0_0_10px_rgba(var(--primary),0.5)]" : 
-                isSnake ? "bg-primary/40" : 
-                isFood ? "bg-red-500 animate-pulse" : 
-                "bg-transparent"
-              }`} 
+              className="rounded-[3px] transition-all duration-200"
+              style={{
+                background: isHead ? "var(--coral)" : isSnake ? "color-mix(in srgb, var(--coral) 45%, transparent)" : isFood ? "var(--mint)" : "transparent",
+                transform: isHead ? "scale(1.1)" : "none",
+                boxShadow: isHead ? "0 0 8px var(--coral)" : "none",
+              }} 
             />
           );
         })}
@@ -179,16 +179,16 @@ export default function SnakeGame() {
 
       {/* Overlays */}
       {(!isPlaying || isGameOver) && (
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex flex-col items-center justify-center space-y-4 z-20">
+        <div className="absolute inset-0 flex flex-col items-center justify-center space-y-4 z-20" style={{ background: "color-mix(in srgb, var(--surface) 85%, transparent)", backdropFilter: "blur(8px)", borderRadius: "20px" }}>
           <div className="text-center space-y-2">
-            <h4 className="text-xl font-bold tracking-tighter uppercase">{isGameOver ? "Game Over" : "Snake Game"}</h4>
-            <p className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
+            <h4 className="font-display text-xl font-bold tracking-tight">{isGameOver ? "Game Over" : "Snake Game"}</h4>
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
               {isGameOver ? `Final Score: ${score}` : "Ready to play?"}
             </p>
           </div>
           <button 
             onClick={isGameOver ? resetGame : () => setIsPlaying(true)}
-            className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-bold text-xs uppercase tracking-widest hover:scale-110 transition-transform active:scale-95"
+            className="clay-btn clay-coral clay-btn-colored px-6 py-3 text-xs font-semibold uppercase tracking-widest"
           >
             {isGameOver ? <><RotateCcw size={16} /> Try Again</> : <><Play size={16} /> Start Game</>}
           </button>
@@ -197,7 +197,7 @@ export default function SnakeGame() {
       
       {/* Mobile Hint */}
       <div className="pb-4 text-center md:hidden">
-        <span className="text-[8px] font-mono uppercase opacity-30 tracking-widest">Swipe to override direction</span>
+        <span className="text-[8px] uppercase opacity-30 tracking-widest">Swipe to override direction</span>
       </div>
     </div>
   );

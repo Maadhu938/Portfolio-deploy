@@ -5,16 +5,18 @@ import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { GithubIcon as Github, InstagramIcon as Instagram, LinkedinIcon as Linkedin } from "./Icons";
 
 const socials = [
-  ["LinkedIn", "professional", "https://linkedin.com/in/maadhu-avati-525435279", Linkedin],
-  ["GitHub", "source code", "https://github.com/Maadhu938", Github],
-  ["Instagram", "social", "https://instagram.com/maadhu_839", Instagram],
+  ["LinkedIn", "Professional Network", "https://linkedin.com/in/maadhu-avati-525435279", Linkedin],
+  ["GitHub", "Source Code", "https://github.com/Maadhu938", Github],
+  ["Instagram", "Social", "https://instagram.com/maadhu_839", Instagram],
 ] as const;
+
+const socialColors = ["tint sky", "tint butter", "tint coral"];
 
 export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="section-shell pb-20 md:pb-28"
+      className="section-shell"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -22,23 +24,31 @@ export default function ContactSection() {
     >
       <div className="section-inner">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="pixel-card bg-primary p-6 text-foreground md:p-8">
-            <p className="text-[10px] font-black uppercase tracking-[0.24em] text-muted-foreground">Final world / Contact</p>
-            <h2 className="mt-6 text-4xl font-black uppercase leading-none tracking-tight md:text-6xl">
-              Ready for co-op mode?
-            </h2>
-            <p className="mt-6 max-w-2xl text-sm font-semibold leading-8 text-muted-foreground md:text-base">
-              Send a quest if you want to build a mobile app, full-stack product, AI assistant,
-              or a cleaner interface for something that already exists.
-            </p>
+          <div className="clay tint mint flex flex-col justify-between p-5 sm:p-6 md:p-8">
+            <div>
+              <span className="card-pill tag text-[11px] font-bold uppercase tracking-[0.16em] px-3.5 py-1.5 rounded-full">
+                Get In Touch
+              </span>
+              <h2 className="font-display mt-4 sm:mt-6 text-3xl sm:text-5xl md:text-6xl font-bold leading-none tracking-tight text-ink">
+                Let&apos;s build something great.
+              </h2>
+              <p className="mt-4 sm:mt-6 max-w-2xl text-sm sm:text-base font-medium leading-7 sm:leading-8 text-ink opacity-90">
+                Reach out if you are looking to build a mobile app, full-stack product, AI assistant,
+                or a more refined interface for an existing system.
+              </p>
+            </div>
 
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a href="mailto:maadhuavati7@gmail.com" className="pixel-button bg-card px-5 py-3 text-sm font-black uppercase text-foreground">
-                <Mail size={17} />
+            <div className="mt-7 sm:mt-9 flex flex-wrap items-center gap-3 sm:gap-4">
+              {/* Primary button: coral */}
+              <a
+                href="mailto:maadhuavati7@gmail.com"
+                className="clay-btn clay-coral clay-btn-colored px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-bold uppercase"
+              >
+                <Mail size={16} className="text-current" />
                 Email me
               </a>
-              <span className="inline-flex items-center gap-2 border-2 border-foreground/70 px-5 py-3 text-sm font-black uppercase">
-                <MapPin size={17} />
+              <span className="card-pill tag px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold uppercase rounded-full">
+                <MapPin size={15} className="mr-1 text-current" />
                 Bangalore
               </span>
             </div>
@@ -51,20 +61,25 @@ export default function ContactSection() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group pixel-card-sm flex items-center justify-between gap-4 bg-card p-5 transition-transform hover:-translate-y-1"
+                className={`clay p-5 ${socialColors[index % socialColors.length]} group flex items-center justify-between gap-4 transition-transform hover:-translate-y-1`}
               >
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center border-2 border-border bg-muted">
-                    <Icon size={20} />
+                  <div className="card-button clay-round flex items-center justify-center shrink-0">
+                    <Icon size={20} className="text-current" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
-                      Link 0{index + 1} / {label}
+                    <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-ink">
+                      {label}
                     </p>
-                    <h3 className="mt-1 text-xl font-black uppercase">{name}</h3>
+                    <h3 className="font-display mt-1 text-xl font-bold text-ink">{name}</h3>
                   </div>
                 </div>
-                <ArrowUpRight size={18} className="shrink-0" />
+                <div className="card-button clay-round h-10 w-10 shrink-0 flex items-center justify-center">
+                  <ArrowUpRight
+                    size={20}
+                    className="text-current transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  />
+                </div>
               </a>
             ))}
           </div>

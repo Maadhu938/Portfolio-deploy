@@ -1,17 +1,32 @@
 import type { Metadata, Viewport } from "next";
+import { Fredoka, DM_Sans } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const siteUrl = "https://maadhuavati.in";
 
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-fredoka",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f6f1" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d111a" },
+    { media: "(prefers-color-scheme: light)", color: "#e6ecef" },
+    { media: "(prefers-color-scheme: dark)", color: "#1d2331" },
   ],
 };
 
@@ -100,12 +115,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${fredoka.variable} ${dmSans.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="antialiased selection:bg-primary selection:text-primary-foreground">
-        <ThemeProvider attribute="class" defaultTheme="dark">
-            <JsonLd />
-            <div className="fixed inset-0 pointer-events-none noise overflow-hidden" />
-            {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <JsonLd />
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -1,15 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play, Store } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 import { projects } from "@/data/projects";
-import { GithubIcon as Github } from "./Icons";
-
-const cartridgeColors = [
-  "bg-[hsl(var(--surface-warm))]",
-  "bg-[hsl(var(--surface-cool))]",
-  "bg-secondary",
-];
+import { GithubIcon as Github, PlayStoreIcon } from "./Icons";
 
 export default function ProjectsSection() {
   const featured = projects.filter((project) => project.featured);
@@ -25,42 +19,41 @@ export default function ProjectsSection() {
       transition={{ duration: 0.45 }}
     >
       <div className="section-inner">
-        <div className="mb-12 grid gap-5 md:grid-cols-[0.9fr_0.55fr] md:items-end">
+        <div className="mb-8 sm:mb-10 grid gap-4 sm:gap-5 md:grid-cols-[0.9fr_0.55fr] md:items-end">
           <div>
-            <p className="eyebrow">World 01 / Projects</p>
-            <h2 className="pixel-title mt-4 text-4xl font-black uppercase leading-none tracking-tight md:text-6xl">
-              Quest cartridges
+            <p className="eyebrow">Projects</p>
+            <h2 className="font-display mt-3 sm:mt-4 text-3xl sm:text-5xl md:text-6xl font-bold leading-none tracking-tight">
+              Featured Work
             </h2>
           </div>
-          <p className="pixel-card-sm bg-card p-4 text-sm font-semibold leading-7 text-muted-foreground">
-            Each build has a real gameplay loop: learn, organize, retrieve, ship, or practice.
+          <p className="clay-card-sm text-xs sm:text-sm font-medium leading-6 sm:leading-7 text-muted-foreground">
+            Full-stack, mobile, and AI applications built with focused logic, clear workflows, and production-ready architectures.
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
+        {/* Project grid: 2 columns, collapsing to 1 column under 760px. Cards rotate mint, sky, butter, coral */}
+        <div className="project-grid">
           {featured.map((project, index) => (
             <article
               key={project.title}
-              className={`pixel-card flex min-h-[390px] flex-col justify-between p-5 ${cartridgeColors[index % cartridgeColors.length]} ${
-                index === 0 ? "lg:col-span-2" : ""
-              }`}
+              className="project-card flex min-h-0 sm:min-h-[400px] flex-col justify-between"
             >
               <div>
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <span className="pixel-badge px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em]">
-                    Cart 0{index + 1}
+                <div className="flex flex-wrap items-start justify-between gap-2.5 sm:gap-3">
+                  <span className="card-pill tag text-[11px] font-bold uppercase tracking-[0.12em] px-3.5 py-1.5 rounded-full">
+                    Project 0{index + 1}
                   </span>
                   {project.status && (
-                    <span className="border-2 border-border bg-card px-3 py-1 text-[10px] font-black uppercase">
+                    <span className="card-pill tag text-[11px] font-bold uppercase px-3.5 py-1.5 rounded-full">
                       {project.status}
                     </span>
                   )}
                 </div>
 
-                <h3 className="mt-8 text-3xl font-black uppercase leading-tight tracking-tight md:text-4xl">
+                <h3 className="font-display mt-6 sm:mt-8 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight tracking-tight text-ink">
                   {project.title}
                 </h3>
-                <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-foreground/75 md:text-base">
+                <p className="mt-4 sm:mt-5 text-sm font-medium leading-7 md:text-base">
                   {project.description}
                 </p>
               </div>
@@ -68,31 +61,34 @@ export default function ProjectsSection() {
               <div className="mt-8">
                 <div className="flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
-                    <span key={tech} className="border-2 border-border bg-card px-2.5 py-1 text-[10px] font-black uppercase">
+                    <span
+                      key={tech}
+                      className="card-pill tag text-[10px] font-bold uppercase px-3 py-1 rounded-full"
+                    >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="mt-6 flex flex-wrap gap-3 border-t-2 border-border pt-5">
+                <div className="mt-6 flex flex-wrap items-center gap-3 pt-4">
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="pixel-button pixel-button-alt px-4 py-2 text-xs font-black uppercase"
+                    className="card-button clay-btn px-5 py-3 text-xs font-bold uppercase"
                   >
-                    <Github size={16} />
-                    Repo
+                    <Github size={16} className="text-current" />
+                    Code
                   </a>
                   {project.playStoreUrl && (
                     <a
                       href={project.playStoreUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="pixel-button bg-card px-3 py-2 text-foreground"
+                      className="card-button clay-round"
                       aria-label="Open Play Store listing"
                     >
-                      <Store size={16} />
+                      <PlayStoreIcon size={18} className="text-current" />
                     </a>
                   )}
                   {project.liveUrl && (
@@ -100,10 +96,10 @@ export default function ProjectsSection() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="pixel-button bg-card px-3 py-2 text-foreground"
+                      className="card-button clay-round"
                       aria-label="Open live demo"
                     >
-                      <Play size={16} />
+                      <Play size={18} className="text-current" />
                     </a>
                   )}
                 </div>
@@ -112,25 +108,35 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        <div className="mt-8 pixel-card bg-card p-5">
-          <div className="mb-5 flex items-center justify-between border-b-2 border-border pb-4">
-            <h3 className="text-lg font-black uppercase">Bonus stages</h3>
-            <span className="text-xs font-black uppercase text-muted-foreground">{archive.length} repos</span>
+        <div className="mt-8 clay-card">
+          <div
+            className="mb-5 flex items-center justify-between pb-4"
+            style={{ borderBottom: "1px solid color-mix(in srgb, var(--muted) 20%, transparent)" }}
+          >
+            <h3 className="font-display text-xl font-bold">More Projects</h3>
+            <span className="text-xs font-semibold uppercase text-muted-foreground">
+              {archive.length} repositories
+            </span>
           </div>
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-4 grid-cols-1 min-[760px]:grid-cols-2">
             {archive.map((project) => (
               <a
                 key={project.title}
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-start justify-between gap-4 border-2 border-border bg-background p-4 transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="clay-card-sm group flex items-start justify-between gap-4 transition-transform hover:-translate-y-1"
               >
                 <div>
-                  <h4 className="font-black uppercase">{project.title}</h4>
-                  <p className="mt-2 line-clamp-2 text-xs font-semibold leading-5 opacity-75">{project.description}</p>
+                  <h4 className="font-display text-lg font-bold">{project.title}</h4>
+                  <p className="mt-2 line-clamp-2 text-xs font-medium leading-5 text-muted-foreground">
+                    {project.description}
+                  </p>
                 </div>
-                <ArrowUpRight size={18} className="shrink-0" />
+                <ArrowUpRight
+                  size={20}
+                  className="shrink-0 text-muted-foreground transition-colors group-hover:text-primary"
+                />
               </a>
             ))}
           </div>
